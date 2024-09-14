@@ -9,7 +9,7 @@
 </head>
 <body>
     <?php
-        include '../util/menu.php'
+        include '../util/menu.php';
  ?>
 
 

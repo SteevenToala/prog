@@ -11,7 +11,7 @@
 <body>
      <!-- Menú de Navegación -->
   <?php
-    include '../util/menu.php'
+    include '../util/menu.php';
   ?>
 
 
