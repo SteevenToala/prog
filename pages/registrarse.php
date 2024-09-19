@@ -1,3 +1,7 @@
+<?php
+include '../util/conexion.php';
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +37,7 @@
                 <input type="checkbox" class="form-check-input" id="rememberMe">
                 <label class="form-check-label" for="rememberMe">Recordarme</label>
               </div>
-              <button type="submit" class="btn btn-primary w-100">Ingresar</button>
+              <button id="registrarse" type="submit" class="btn btn-primary w-100">Registrarse</button>
             </form>
             <div class="text-center mt-3">
               <a href="#">¿Olvidaste tu contraseña?</a>
@@ -47,6 +51,7 @@
   
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/registrarse.js"></script>
     
 </body>
 </html>
