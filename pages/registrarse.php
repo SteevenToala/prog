@@ -4,6 +4,7 @@ include '../util/verificadorSesion.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,14 +12,15 @@ include '../util/verificadorSesion.php';
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../styles/background.css">
   <style>
-    .container-registro{
-      background-color: white;      
+    .container-registro {
+      background-color: white;
       padding: 50px;
       border-radius: 20px;
-      
+
     }
   </style>
 </head>
+
 <body>
   <?php
   include '../util/menu.php';
@@ -26,7 +28,7 @@ include '../util/verificadorSesion.php';
 
 
 
-<div class="container mt-5 container-registro">
+  <div class="container mt-5 container-registro">
     <h2 class="mb-4 text-center">Registro de Usuario</h2>
 
     <!-- Div para mostrar alertas -->
@@ -53,7 +55,7 @@ include '../util/verificadorSesion.php';
         <select id="tipo_usuario" name="tipo_usuario" class="form-select" required>
           <option value="administrador">Administrador</option>
           <option value="empleado">Empleado</option>
-          <option value="usuario_normal">Usuario Normal</option>
+          <option value="cliente">Cliente</option>
         </select>
       </div>
 
@@ -68,6 +70,7 @@ include '../util/verificadorSesion.php';
 
   <!-- JavaScript para manejar el envío de datos por AJAX -->
   <script src="../js/registrarse.js"></script>
-  
+
 </body>
+
 </html>
