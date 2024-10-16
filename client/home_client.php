@@ -2,7 +2,7 @@
 session_start();
 
 // Verificar si el usuario está autenticado y es cliente
-if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo_usuario'] != 'usuario_normal') {
+if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo_usuario'] != 'cliente') {
     header("Location: ../pages/iniciarSesion.php");
     exit();
 }
