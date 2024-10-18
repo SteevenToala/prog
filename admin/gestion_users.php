@@ -31,7 +31,8 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo_usuario'] != 'administrad
 <body>
 
  <?php
- include './home_section/modal_editUser.html'; 
+ include './home_section/modals/modal_editUser.html'; 
+ include './home_section/modals/modal_addUser.html'; 
  
  ?>
 

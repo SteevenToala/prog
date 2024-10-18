@@ -61,39 +61,4 @@ $conn->close();
     </div>
 </div>
 
-<!-- Modal para agregar usuario -->
-<div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="addUserModalLabel">Agregar Nuevo Usuario</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form id="formAddUser">
-          <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre de Usuario</label>
-            <input type="text" class="form-control" id="nombre" name="nombre" required>
-          </div>
-          <div class="mb-3">
-            <label for="email" class="form-label">Correo</label>
-            <input type="email" class="form-control" id="email" name="email" required>
-          </div>
-          <div class="mb-3">
-            <label for="password" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="password" name="password" required>
-          </div>
-          <div class="mb-3">
-            <label for="tipo_usuario" class="form-label">Tipo de Usuario</label>
-            <select id="tipo_usuario" name="tipo_usuario" class="form-select" required>
-              <option value="administrador">Administrador</option>
-              <option value="empleado">Empleado</option>
-              <option value="cliente">Cliente</option>
-            </select>
-          </div>
-          <button type="submit" class="btn btn-primary">Agregar Usuario</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+

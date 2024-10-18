@@ -31,7 +31,8 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo_usuario'] != 'administrad
 <body>
 
  <?php 
- include './home_section/modal_editVehicle.html';
+ include './home_section/modals/modal_editVehicle.html';
+ include './home_section/modals/modal_addVehicle.html';
  
  ?>
 
@@ -61,6 +62,7 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo_usuario'] != 'administrad
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>    
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>   
+    <script src="./home_section/js/addVehicle.js"></script>  
     <script src="./home_section/js/editVehicle.js"></script>  
     <script src="./home_section/js/removeVehicle.js"></script>               
 </body>
