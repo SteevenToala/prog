@@ -1,0 +1,51 @@
+<div class="modal fade" id="addVehicleModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addUserModalLabel">Agregar Nuevo Vehiculo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formAddVehicle">
+                    <div class="mb-3">
+                        <label for="marca" class="form-label">Marca</label>
+                        <input type="text" class="form-control" id="marca" name="marca" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="modelo" class="form-label">Modelo</label>
+                        <input type="text" class="form-control" id="modelo" name="modelo" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="matricula" class="form-label">Matricula</label>
+                        <input type="text" class="form-control" id="matricula" name="matricula" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="disponibilidad" class="form-label">Disponibilidad</label>
+                        <select id="disponibilidad" name="disponibilidad" class="form-select" required>
+                            <option value="Disponible">Disponible</option>
+                            <option value="No disponible">No disponible</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tarifa" class="form-label">tarifa</label>
+                        <input type="number" class="form-control" id="tarifa" name="tarifa" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="estado" class="form-label">Estado</label>
+                        <select id="estado" name="estado" class="form-select" required>
+                            <option value="Excelente">Excelente</option>
+                            <option value="Bueno">Bueno</option>
+                            <option value="Regular">Regular</option>
+                            <option value="Malo">Malo</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="color" class="form-label">Color</label>
+                        <input type="text" class="form-control" id="color" name="color" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Agregar Vehiculo</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
