@@ -1,0 +1,114 @@
+<?php include '../util/conexion.php';
+$sql = "SELECT id, marca, modelo,matricula,disponibilidad,tarifa,estado,color,fecha_registro FROM vehiculos";
+$result = mysqli_query($conn, $sql);
+
+$datavehicle = array();
+if ($result->num_rows > 0) {
+    while ($row = mysqli_fetch_array($result)) {
+        $datavehicle[] = array(
+            'id' => $row['id'],
+            'marca' => $row['marca'],
+            'modelo' => $row['modelo'],
+            'matricula' => $row['matricula'],
+            'disponibilidad' => $row['disponibilidad'],
+            'tarifa' => $row['tarifa'],
+            'estado' => $row['estado'],
+            'color' => $row['color'],
+            'fecha_registro'=> $row['fecha_registro']
+        );
+    }
+} else {
+    echo "no existen elementos";
+}
+
+$conn->close();
+?>
+<div id="listVehicles" class="content-section active">
+    <h2>Listar Vehiculos</h2>
+    <div id="alertaVehicle" class="alert d-none" role="alert"></div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Matricula</th>                
+                <th>Tarifa</th>      
+                <th>Estado</th>               
+                <th>Color</th> 
+                <th>Disponibilidad</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="tablaUsuarios">
+            <?php foreach ($datavehicle as $vehicle) : ?>
+                <tr id="vehicle-<?php echo $vehicle['id']; ?>">
+                    <td class="marca"><?php echo htmlspecialchars($vehicle['marca'], ENT_QUOTES, 'UTF-8'); ?></td>
+                    <td class="modelo"><?php echo htmlspecialchars($vehicle['modelo'], ENT_QUOTES, 'UTF-8'); ?></td>
+                    <td class="matricula"><?php echo htmlspecialchars($vehicle['matricula'], ENT_QUOTES, 'UTF-8'); ?></td>
+                    <td class="tarifa"><?php echo htmlspecialchars($vehicle['tarifa'], ENT_QUOTES, 'UTF-8'); ?></td>
+                    <td class="estado"><?php echo htmlspecialchars($vehicle['estado'], ENT_QUOTES, 'UTF-8'); ?></td>
+                    <td class="color"><?php echo htmlspecialchars($vehicle['color'], ENT_QUOTES, 'UTF-8'); ?></td>
+                    <td><?php echo $vehicle['disponibilidad']; ?></td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#editModalVehicle" 
+                            data-id="<?php echo $vehicle['id']; ?>" 
+                            data-editMarca="<?php echo htmlspecialchars($vehicle['marca'], ENT_QUOTES, 'UTF-8'); ?>"
+                            data-editModelo="<?php echo htmlspecialchars($vehicle['modelo'], ENT_QUOTES, 'UTF-8'); ?>"
+                            data-editMatricula="<?php echo htmlspecialchars($vehicle['matricula'], ENT_QUOTES, 'UTF-8'); ?>"
+                            data-editTarifa="<?php echo htmlspecialchars($vehicle['tarifa'], ENT_QUOTES, 'UTF-8'); ?>"
+                            data-editEstado="<?php echo htmlspecialchars($vehicle['estado'], ENT_QUOTES, 'UTF-8'); ?>"
+                            data-editColor="<?php echo htmlspecialchars($vehicle['color'], ENT_QUOTES, 'UTF-8'); ?>">                            
+                            Editar
+                        </button>
+                        <button class="btn btn-danger btn-sm eliminar" data-id="<?php echo $vehicle['id']; ?>">Eliminar</button>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+    <!-- Botón para abrir el modal de agregar usuario, centrado -->
+    <div class="text-center mt-3">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addVehicleModal">Agregar Vehiculo</button>
+    </div>
+</div>
+
+
+<!-- Modal para agregar vehicle -->
+<div class="modal fade" id="addVehicleModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addUserModalLabel">Agregar Nuevo Vehiculo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="formAddUser">
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre de Usuario</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Correo</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+          </div>
+          <div class="mb-3">
+            <label for="tipo_usuario" class="form-label">Tipo de Usuario</label>
+            <select id="tipo_usuario" name="tipo_usuario" class="form-select" required>
+              <option value="administrador">Administrador</option>
+              <option value="empleado">Empleado</option>
+              <option value="cliente">Cliente</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Agregar Usuario</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
