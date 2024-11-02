@@ -23,6 +23,7 @@ $('#formAddVehicle').submit(function(e) {
                     <td class="tarifa">${data.tarifa}</td>
                     <td class="estado">${data.estado}</td>
                     <td class="color">${data.color}</td>
+                    <td class="tipo">${data.tipo}</td>
                     <td class="disponibilidad">${data.disponibilidad}</td>
                     <td>
                         <button class="btn btn-warning btn-sm" 
@@ -34,7 +35,9 @@ $('#formAddVehicle').submit(function(e) {
                             data-editMatricula="${data.matricula}"
                             data-editTarifa="${data.tarifa}"
                             data-editEstado="${data.estado}"
-                            data-editColor="${data.color}">
+                            data-editColor="${data.color}"
+                            data-editTipo="${data.tipo}"
+                            >
                             Editar
                         </button>
                         <button class="btn btn-danger btn-sm eliminar" data-id="${data.id}">Eliminar</button>

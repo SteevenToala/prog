@@ -1,41 +1,62 @@
 <!-- Modal para Editar Vehiculo -->
 <div class="modal fade" id="editModalVehicle" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="editModalLabel">Editar Vehiculo</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form id="editFormVehicle">
-            <input type="hidden" name="id" id="editVehicleId">
-            <div class="mb-3">
-                <label for="editMarca" class="form-label">Marca</label>
-                <input type="text" class="form-control" id="editMarca" name="editMarca">
-            </div>
-            <div class="mb-3">
-                <label for="editModelo" class="form-label">Modelo</label>
-                <input type="text" class="form-control" id="editModelo" name="editModelo">
-            </div>
-            <div class="mb-3">
-                <label for="editMatricula" class="form-label">Matricula</label>
-                <input type="text" class="form-control" id="editMatricula" name="editMatricula">
-            </div>
-            <div class="mb-3">
-                <label for="editTarifa" class="form-label">Tarifa</label>
-                <input type="number" class="form-control" id="editTarifa" name="editTarifa">
-            </div>
-            <div class="mb-3">
-                <label for="editColor" class="form-label">Color</label>
-                <input type="text" class="form-control" id="editColor" name="editColor">
-            </div>
-            <div class="mb-3">
-                <label for="editEstado" class="form-label">Estado</label>
-                <input type="text" class="form-control" id="editEstado" name="editEstado">
-            </div>
-            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Editar Vehiculo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="editFormVehicle">
+          <input type="hidden" name="id" id="editVehicleId">
+          <div class="mb-3">
+            <label for="editMarca" class="form-label">Marca</label>
+            <input type="text" class="form-control" id="editMarca" name="editMarca">
+          </div>
+          <div class="mb-3">
+            <label for="editModelo" class="form-label">Modelo</label>
+            <input type="text" class="form-control" id="editModelo" name="editModelo">
+          </div>
+          <div class="mb-3">
+            <label for="editMatricula" class="form-label">Matricula</label>
+            <input type="text" class="form-control" id="editMatricula" name="editMatricula">
+          </div>
+          <div class="mb-3">
+            <label for="editTarifa" class="form-label">Tarifa</label>
+            <input type="number" class="form-control" id="editTarifa" name="editTarifa">
+          </div>
+          <div class="mb-3">
+            <label for="editColor" class="form-label">Color</label>
+            <input type="text" class="form-control" id="editColor" name="editColor">
+          </div>
+          <div class="mb-3">
+            <label for="editEstado" class="form-label">Estado</label>
+            <select type="text" class="form-select" id="editEstado" name="editEstado">
+              <option value="Excelente">Excelente</option>
+              <option value="Bueno">Bueno</option>
+              <option value="Regular">Regular</option>
+              <option value="Malo">Malo</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="editTipo" class="form-label">Tipo</label>
+            <select type="text" class="form-select" id="editTipo" name="editTipo">
+              <option value="auto">auto</option>
+              <option value="camioneta">camioneta</option>
+              <option value="camion">camion</option>
+              <option value="maquinaria">maquinaria</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="editDisponibilidad" class="form-label">Disponibilidad</label>
+            <select type="text" class="form-select" id="editDisponibilidad" name="editDisponibilidad">
+              <option value="Disponible">Disponible</option>
+              <option value="No disponible">No disponible</option>              
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Guardar Cambios</button>
         </form>
-        </div>
       </div>
     </div>
   </div>
+</div>

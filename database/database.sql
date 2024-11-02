@@ -13,6 +13,8 @@ MODIFY COLUMN tipo_usuario ENUM('administrador', 'empleado', 'cliente');
 
 
 
+
+
 CREATE TABLE vehiculos (
     id INT AUTO_INCREMENT PRIMARY KEY,      -- Identificador único del vehículo
     marca VARCHAR(50) NOT NULL,             -- Marca del vehículo (ej. Toyota, Ford)
@@ -24,3 +26,32 @@ CREATE TABLE vehiculos (
     color VARCHAR(30),                      -- Color del vehículo (opcional)
     fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- Fecha de registro del vehículo en el sistema
 );
+
+ALTER TABLE vehiculos
+ADD tipo_vehiculo ENUM('auto', 'camioneta', 'camion','maquinaria');
+
+
+
+CREATE TABLE tarifas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    tipo_vehiculo VARCHAR(50) NOT NULL,
+    duracion_alquiler INT NOT NULL, -- En días
+    temporada ENUM('alta', 'baja') NOT NULL,
+    precio DECIMAL(10, 2) NOT NULL
+);
+
+
+CREATE TABLE alquileres (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    vehiculo_id INT NOT NULL,               -- ID del vehículo alquilado
+    usuario_id INT NOT NULL,                -- ID del usuario que realiza el alquiler
+    fecha_inicio VARCHAR(50) NOT NULL,      -- Fecha de inicio del alquiler
+    fecha_fin VARCHAR(50),                  -- Fecha de finalización del alquiler
+    estado ENUM('Activo', 'Inactivo'),      -- Estado del alquiler
+    FOREIGN KEY (vehiculo_id) REFERENCES vehiculos(id),  -- Clave foránea hacia la tabla vehiculos
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)     -- Clave foránea hacia la tabla usuarios
+);
+
+
+
+INSERT INTO alquileres (vehiculo_id,usuario_id,fecha_inicio,fecha_fin,estado) VALUES (1,20,'2024-11-02','2024-11-03','Activo');

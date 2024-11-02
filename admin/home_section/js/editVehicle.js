@@ -9,6 +9,8 @@ editModalVehicle.addEventListener('show.bs.modal', function (event) {
     var tarifa = button.getAttribute('data-editTarifa');
     var color = button.getAttribute('data-editColor');
     var estado = button.getAttribute('data-editEstado');
+    var tipo_vehiculo = button.getAttribute('data-editTipo');
+    var disponibilidad = button.getAttribute('data-editDisponibilidad');
 
     // Asignar los valores a los campos del modal
     document.getElementById('editVehicleId').value = vehicleId;
@@ -18,6 +20,8 @@ editModalVehicle.addEventListener('show.bs.modal', function (event) {
     document.getElementById('editTarifa').value = tarifa;
     document.getElementById('editColor').value = color;
     document.getElementById('editEstado').value = estado;
+    document.getElementById('editTipo').value = tipo_vehiculo;
+    document.getElementById('editDisponibilidad').value = disponibilidad;
 });
 
 // Limpiar el modal al cerrarse para evitar que queden valores antiguos
@@ -37,6 +41,8 @@ $('#editFormVehicle').submit(function (e) {
     var tarifa = parseFloat($('#editTarifa').val()); 
     var color = $('#editColor').val();
     var estado = $('#editEstado').val();
+    var tipo_vehiculo = $('#editTipo').val();
+    var disponibilidad = $('#editDisponibilidad').val();
 
     if (isNaN(tarifa) || tarifa < 0) {
         alert('La tarifa debe ser un número válido y mayor o igual a cero.');
@@ -53,6 +59,8 @@ $('#editFormVehicle').submit(function (e) {
             matricula: matricula,
             tarifa: tarifa,
             color: color,
+            disponibilidad: disponibilidad,
+            tipo_vehiculo: tipo_vehiculo,
             estado: estado
         },
         success: function (response) {
@@ -67,6 +75,8 @@ $('#editFormVehicle').submit(function (e) {
                 $('#vehicle-' + vehicleId + ' .tarifa').text(tarifa);
                 $('#vehicle-' + vehicleId + ' .color').text(color);
                 $('#vehicle-' + vehicleId + ' .estado').text(estado);
+                $('#vehicle-' + vehicleId + ' .tipo').text(tipo_vehiculo);
+                $('#vehicle-' + vehicleId + ' .disponibilidad').text(disponibilidad);
 
                 // Actualizar el atributo data- del botón Editar
                 $('button[data-id="' + vehicleId + '"]').attr({
@@ -74,7 +84,9 @@ $('#editFormVehicle').submit(function (e) {
                     'data-editModelo': modelo,
                     'data-editMatricula': matricula,
                     'data-editTarifa': tarifa,
-                    'data-editColor': color,
+                    'data-editColor': color,                    
+                    'data-editTipo': tipo_vehiculo,
+                    'data-editDisponibilidad': disponibilidad,
                     'data-editEstado': estado
                 });
 

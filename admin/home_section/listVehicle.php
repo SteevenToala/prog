@@ -1,5 +1,5 @@
 <?php include '../util/conexion.php';
-$sql = "SELECT id, marca, modelo,matricula,disponibilidad,tarifa,estado,color,fecha_registro FROM vehiculos";
+$sql = "SELECT id, marca, modelo,matricula,disponibilidad,tarifa,estado,color,fecha_registro,tipo_vehiculo FROM vehiculos";
 $result = mysqli_query($conn, $sql);
 
 $datavehicle = array();
@@ -13,6 +13,7 @@ if ($result->num_rows > 0) {
             'disponibilidad' => $row['disponibilidad'],
             'tarifa' => $row['tarifa'],
             'estado' => $row['estado'],
+            'tipo_vehiculo' => $row['tipo_vehiculo'],
             'color' => $row['color'],
             'fecha_registro'=> $row['fecha_registro']
         );
@@ -34,7 +35,8 @@ $conn->close();
                 <th>Matricula</th>                
                 <th>Tarifa</th>      
                 <th>Estado</th>               
-                <th>Color</th> 
+                <th>Color</th>                 
+                <th>Tipo</th>
                 <th>Disponibilidad</th>
                 <th>Acciones</th>
             </tr>
@@ -48,7 +50,8 @@ $conn->close();
                     <td class="tarifa"><?php echo htmlspecialchars($vehicle['tarifa'], ENT_QUOTES, 'UTF-8'); ?></td>
                     <td class="estado"><?php echo htmlspecialchars($vehicle['estado'], ENT_QUOTES, 'UTF-8'); ?></td>
                     <td class="color"><?php echo htmlspecialchars($vehicle['color'], ENT_QUOTES, 'UTF-8'); ?></td>
-                    <td><?php echo $vehicle['disponibilidad']; ?></td>
+                    <td class="tipo"><?php echo htmlspecialchars($vehicle['tipo_vehiculo'], ENT_QUOTES, 'UTF-8'); ?></td>
+                    <td class="disponibilidad"><?php echo $vehicle['disponibilidad']; ?></td>
                     <td>
                         <button class="btn btn-warning btn-sm" 
                             data-bs-toggle="modal" 
@@ -59,6 +62,8 @@ $conn->close();
                             data-editMatricula="<?php echo htmlspecialchars($vehicle['matricula'], ENT_QUOTES, 'UTF-8'); ?>"
                             data-editTarifa="<?php echo htmlspecialchars($vehicle['tarifa'], ENT_QUOTES, 'UTF-8'); ?>"
                             data-editEstado="<?php echo htmlspecialchars($vehicle['estado'], ENT_QUOTES, 'UTF-8'); ?>"
+                            data-editTipo="<?php echo htmlspecialchars($vehicle['tipo_vehiculo'], ENT_QUOTES, 'UTF-8'); ?>"
+                            data-editDisponibilidad="<?php echo htmlspecialchars($vehicle['disponibilidad'], ENT_QUOTES, 'UTF-8'); ?>"
                             data-editColor="<?php echo htmlspecialchars($vehicle['color'], ENT_QUOTES, 'UTF-8'); ?>">                            
                             Editar
                         </button>

@@ -12,10 +12,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $matricula = $_POST['matricula'];
     $tarifa = $_POST['tarifa'];
     $estado = $_POST['estado'];
+    $tipo = $_POST['tipo_vehiculo'];
+    $disponibilidad = $_POST['disponibilidad'];
     $color = $_POST['color'];
 
     // Validar los datos recibidos
-    if (empty($id) || empty($marca) || empty($modelo) || empty($matricula) || empty($tarifa) || empty($estado) || empty($color)) {
+    if (empty($id) || empty($marca) || empty($modelo) || empty($matricula) || empty($tarifa) || empty($estado) || empty($color)|| empty($disponibilidad)|| empty($tipo)) {
         echo 'error: invalid input'; // Mensaje más específico
         exit;
     }
@@ -27,13 +29,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Consulta para actualizar el vehículo
-    $sql = "UPDATE vehiculos SET marca = ?, modelo = ?, matricula = ?, tarifa = ?, estado = ?, color = ? WHERE id = ?";
+    $sql = "UPDATE vehiculos SET marca = ?, modelo = ?, matricula = ?, tarifa = ?, estado = ?, disponibilidad = ?, color = ?, tipo_vehiculo = ? WHERE id = ?";
     $stmt = $conn->prepare($sql);
 
     // Verificar si la consulta se preparó correctamente
     if ($stmt) {
         // Vincular los parámetros correctamente
-        $stmt->bind_param("sssdssi", $marca, $modelo, $matricula, $tarifa, $estado, $color, $id);
+        $stmt->bind_param("sssdssssi", $marca, $modelo, $matricula, $tarifa, $estado,$disponibilidad, $color,$tipo, $id);
 
         // Ejecutar la consulta
         if ($stmt->execute()) {

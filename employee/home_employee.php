@@ -17,79 +17,16 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo_usuario'] != 'empleado') 
     <title>Inicio - Empleado</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-        }
-
-        .sidebar {
-            height: 100vh;
-            position: sticky;
-            top: 0;
-            background-color: #343a40;
-            color: white;
-        }
-
-        .sidebar a {
-            color: #fff;
-            padding: 15px;
-            display: block;
-            transition: background-color 0.3s;
-        }
-
-        .sidebar a:hover {
-            background-color: #495057;
-        }
-
-        .main-content {
-            padding: 20px;
-        }
-
-        .content-section {
-            display: none;
-        }
-
-        .content-section.active {
-            display: block;
-        }
-    </style>
+    <link rel="stylesheet" href="../styles/home_admin.css">
 </head>
 
 <body>
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
-            <nav class="col-md-3 col-lg-2 sidebar">
-                <h4 class="text-center mt-3">Menú del Empleado</h4>
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#" onclick="showSection('dashboard')">
-                            <i class="fas fa-tachometer-alt"></i> Dashboard
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="showSection('alquileres')">
-                            <i class="fas fa-car"></i> Alquileres
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="showSection('vehiculos')">
-                            <i class="fas fa-car-side"></i> Vehículos
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="showSection('tareas')">
-                            <i class="fas fa-tasks"></i> Tareas Diarias
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-danger" href="../util/logout.php">
-                            <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+            <?php
+            include './home_section/scripts/menu.php';
+            ?>
 
             <!-- Contenido Principal -->
             <main class="col-md-9 ms-sm-auto col-lg-10 main-content">
@@ -147,7 +84,7 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo_usuario'] != 'empleado') 
                     </table>
                 </div>
 
-                <!-- Sección de Vehículos -->
+                
                 <div id="vehiculos" class="content-section">
                     <h2>Vehículos Disponibles</h2>
                     <table class="table table-striped">
