@@ -40,6 +40,7 @@ if ($result->num_rows > 0) {
 <body>
     <?php
     include './home_section/modals/contrato.html';
+    include './home_section/modals/modal_addRent.php';
 
     ?>
 
@@ -79,12 +80,12 @@ if ($result->num_rows > 0) {
                                     </button>
                                 </th>
                             </tr>
-                        <?php endforeach; ?>
-                        <tr>
-                            <th><button class="button">Agregar alquiler</button></th>
-                        </tr>
+                        <?php endforeach; ?>                        
                     </tbody>
                 </table>
+                <div class="text-center mt-3">
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addRentModal">Agregar Alquiler</button>
+                </div>
             </main>
         </div>
     </div>
@@ -111,6 +112,9 @@ if ($result->num_rows > 0) {
         $('#contratoModal').on('hidden.bs.modal', function() {
             $('#editForm')[0].reset(); // Restablecer el formulario
         });
+    </script>
+    <script>
+
     </script>
 
 </body>

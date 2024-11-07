@@ -15,7 +15,7 @@ $('#formAddUser').submit(function(e) {
                 var modal = bootstrap.Modal.getInstance(document.getElementById('addUserModal'));
                 modal.hide();
 
-                // Añadir la nueva fila a la tabla de usuarios
+                
                 var nuevaFila = `<tr id="usuario-${data.id}">
                     <td class="nombre">${data.nombre}</td>
                     <td>${data.email}</td>

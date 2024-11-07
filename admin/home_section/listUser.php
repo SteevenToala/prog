@@ -51,7 +51,7 @@ $conn->close();
                         <button class="btn btn-danger btn-sm eliminar" data-id="<?php echo $usuario['id']; ?>">Eliminar</button>
                     </td>
                 </tr>
-            <?php endforeach; ?>
+            <?php endforeach;?>
         </tbody>
     </table>
 

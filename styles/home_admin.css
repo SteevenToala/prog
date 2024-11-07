@@ -1,79 +1,81 @@
 body {
-    font-family: 'Poppins', sans-serif; /* Fuente más moderna y estilizada */
-    background-color: #f8f9fa;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f2f5;
     color: #333;
+    line-height: 1.6;
 }
 
+/* Sidebar */
 .sidebar {
     height: 100vh;
     position: sticky;
     top: 0;
-    background: linear-gradient(180deg, #007bff, #6c757d); /* Degradado moderno en el fondo */
-    color: white;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(180deg, #2c3e50, #4b636e); /* Degradado más suave */
+    color: #ffffff;
+    box-shadow: 3px 0 12px rgba(0, 0, 0, 0.2);
     transition: background 0.3s ease-in-out;
 }
 
 .sidebar:hover {
-    background: linear-gradient(180deg, #0056b3, #495057); /* Degradado cambia al hacer hover */
-    transition: background 0.5s ease-in-out;
+    background: linear-gradient(180deg, #2c3e50, #34495e); /* Cambios de degradado */
 }
 
 .sidebar h4 {
-    color: #fff;
+    color: #ffffff;
     font-weight: bold;
     text-align: center;
-    margin-top: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Línea sutil bajo el título */
+    padding: 25px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .sidebar a {
     color: #ffffff;
     font-size: 1.1rem;
-    padding: 15px;
+    padding: 15px 20px;
     margin: 10px 0;
     display: block;
     text-decoration: none;
     position: relative;
-    transition: color 0.3s ease, padding-left 0.3s ease;
+    transition: all 0.3s ease;
+    border-radius: 5px;
 }
 
 .sidebar a:hover {
-    color: #ffdd57; /* Color amarillo dorado al hacer hover */
-    padding-left: 25px; /* Desplazamiento sutil del texto al hacer hover */
-    transition: color 0.3s ease, padding-left 0.3s ease;
+    color: #f1c40f;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding-left: 30px;
 }
 
 .sidebar a::before {
     content: "";
     position: absolute;
-    left: -5px;
+    left: 10px;
     top: 50%;
     width: 10px;
     height: 10px;
-    background-color: #ffdd57; /* Punto amarillo dorado */
+    background-color: #f1c40f;
     border-radius: 50%;
-    transform: translateY(-50%) scale(0); /* Empieza invisible */
+    transform: translateY(-50%) scale(0);
     transition: transform 0.3s ease;
 }
 
 .sidebar a:hover::before {
-    transform: translateY(-50%) scale(1); /* Se agranda al hacer hover */
+    transform: translateY(-50%) scale(1);
 }
 
+/* Main Content */
 .main-content {
-    padding: 30px;
+    padding: 40px;
     background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    animation: fadeIn 1s ease-in-out;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 1s ease;
 }
 
-@keyframes fadeIn {
+@keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(30px);
     }
     to {
         opacity: 1;
@@ -81,6 +83,7 @@ body {
     }
 }
 
+/* Content Sections */
 .content-section {
     display: none;
 }
@@ -89,7 +92,7 @@ body {
     display: block;
 }
 
-/* Responsividad para pantallas pequeñas */
+/* Responsividad */
 @media (max-width: 768px) {
     .sidebar {
         height: auto;
@@ -97,11 +100,20 @@ body {
         box-shadow: none;
     }
 
+    .sidebar h4 {
+        padding: 15px 0;
+    }
+
     .sidebar a {
         text-align: center;
+        padding: 10px;
     }
 
     .sidebar a:hover {
         padding-left: 0;
+    }
+
+    .main-content {
+        padding: 20px;
     }
 }
