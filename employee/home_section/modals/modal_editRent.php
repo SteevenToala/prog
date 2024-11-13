@@ -35,15 +35,15 @@ if($resultv->num_rows>0){
 
 
 ?>
-<div class="modal fade" id="addRentModal" tabindex="-1" aria-labelledby="addRentModalLabel" aria-hidden="true">
+<div class="modal fade" id="editModalRent" tabindex="-1" aria-labelledby="editModalRentLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="addRentModalLabel">Agregar Nuevo Alquiler</h5>
+          <h5 class="modal-title" id="editModalRentLabel">Editar Alquiler</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form id="formAddRent">
+          <form id="formEditRent">
             <!--<div class="mb-3">
               <label for="fecha_fin" class="form-label">Fecha Fin</label>
               <input type="date" class="form-control" id="fecha_fin" name="fecha_fin" required>
@@ -64,7 +64,7 @@ if($resultv->num_rows>0){
                 <?php endforeach;?>
               </select>
             </div>
-            <button type="submit" class="btn btn-primary">Agregar Alquiler</button>
+            <button type="submit" class="btn btn-primary">Editar Alquiler</button>
           </form>
         </div>
       </div>

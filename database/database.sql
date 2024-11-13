@@ -47,7 +47,7 @@ CREATE TABLE alquileres (
     usuario_id INT NOT NULL,                -- ID del usuario que realiza el alquiler
     fecha_inicio VARCHAR(50) NOT NULL,      -- Fecha de inicio del alquiler
     fecha_fin VARCHAR(50),                  -- Fecha de finalización del alquiler
-    estado ENUM('Activo', 'Inactivo'),      -- Estado del alquiler
+    estado ENUM('Activo', 'Inactivo')   DEFAULT 'Activo',      -- Estado del alquiler
     FOREIGN KEY (vehiculo_id) REFERENCES vehiculos(id),  -- Clave foránea hacia la tabla vehiculos
     FOREIGN KEY (usuario_id) REFERENCES usuarios(id)     -- Clave foránea hacia la tabla usuarios
 );

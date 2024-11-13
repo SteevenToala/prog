@@ -2,7 +2,32 @@ body {
     font-family: 'Poppins', sans-serif;
     background-color: #f0f2f5;
     color: #333;
-    line-height: 1.6;
+    line-height: 1.6;   
+    overflow-x: hidden; 
+    margin: 0;
+    padding: 0;
+    background-image:url('../images/background2.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+.tittle-p{
+    margin: 0 auto;
+    color: #ffffff;
+}
+.main-content {
+    min-height: 100vh;
+    padding-bottom: 20px;
+    overflow-y: auto;
+    height: 100%;
+    overflow-y: auto;
+}
+.table {
+    margin-bottom: 0; /* Asegura que la tabla no añada márgenes adicionales */
+}
+
+.vh-100 {
+    min-height: 100vh;
 }
 
 /* Sidebar */
@@ -66,7 +91,7 @@ body {
 /* Main Content */
 .main-content {
     padding: 40px;
-    background-color: #ffffff;
+    
     border-radius: 10px;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
     animation: fadeInUp 1s ease;

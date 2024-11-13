@@ -18,6 +18,16 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo_usuario'] != 'empleado') 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../styles/home_admin.css">
+    <link rel="stylesheet" href="../styles/footer.css">
+    <style>
+        canvas {
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave para los gráficos */
+    margin-bottom: 30px; /* Espaciado inferior */
+    width: 400px !important;
+    height: 400px !important;
+}
+    </style>
 </head>
 
 <body>
@@ -29,7 +39,7 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo_usuario'] != 'empleado') 
             ?>
 
             <!-- Contenido Principal -->
-            <main class="col-md-9 ms-sm-auto col-lg-10 main-content">
+            <main class="col-12 mx-auto px-4 main-content d-flex flex-column h-100">
                 <h1>Bienvenido, Empleado</h1>
 
                 <!-- Sección de Dashboard -->
@@ -128,7 +138,7 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo_usuario'] != 'empleado') 
             </main>
         </div>
     </div>
-
+    <?php include '../util/footer.html'; ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
