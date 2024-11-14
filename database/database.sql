@@ -30,7 +30,8 @@ CREATE TABLE vehiculos (
 ALTER TABLE vehiculos
 ADD tipo_vehiculo ENUM('auto', 'camioneta', 'camion','maquinaria');
 
-
+ALTER TABLE vehiculos
+ADD imagen VARCHAR(50);
 
 CREATE TABLE tarifas (
     id INT AUTO_INCREMENT PRIMARY KEY,

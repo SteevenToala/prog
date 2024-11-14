@@ -50,10 +50,6 @@ try {
     echo json_encode(['success' => false, 'message' => 'Error en la transacción: ' . $e->getMessage()]);
 }
 
-// Cerrar la conexión
 mysqli_close($conn);
-
-
-
 
 ?>

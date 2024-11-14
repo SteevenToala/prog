@@ -7,10 +7,8 @@ $id_usuario = $_POST['id_usuario'];
 // Preparar la consulta SQL para eliminar el usuario
 $sql = "DELETE FROM usuarios WHERE id = ?";
 
-// Preparar la declaración
 $stmt = $conn->prepare($sql);
 
-// Vincular el parámetro (asumiendo que id es un entero)
 $stmt->bind_param("i", $id_usuario);
 
 // Ejecutar la declaración

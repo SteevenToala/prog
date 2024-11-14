@@ -1,14 +1,3 @@
-/*let btnregistrarse = document.getElementById("registrarse");
-let inputEmail = document.getElementById("email");
-let inputPassword = document.getElementById("password");
-
-btnregistrarse.addEventListener('click', verAlerta, false);
-
-function verAlerta() {
-    inputEmail.value = "";
-    inputPassword.value = "";
-    alert('Ingresa valores validos');
-}*/
 document.getElementById('registroForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Evitar que el formulario recargue la página
 
@@ -28,6 +17,7 @@ document.getElementById('registroForm').addEventListener('submit', function(even
         alerta.classList.remove('d-none', 'alert-danger');
         alerta.classList.add('alert-success');
         alerta.textContent = '¡Registro exitoso!';
+        this.reset();    
       } else {
         alerta.classList.remove('d-none', 'alert-success');
         alerta.classList.add('alert-danger');
