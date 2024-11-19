@@ -1,24 +1,25 @@
-$(document).on('click','.eliminar',function(e){
-    const idRent = $(this).data('id'); 
+$(document).on('click', '.eliminar', function (e) {
+    const idRent = $(this).data('id'); // Obtiene el ID del alquiler
 
-    let formData = new FormData();
-    formData.append('rent_id',idRent);
-    fetch('./home_section/scripts/removeRent.php',{
-        method:'POST',
-        body:formData
-    })
-    .then(response =>response.text())
-    .then(data=>{
-        const alerta = $('#alerta2');
-        if(data.includes('exitoso')){
-            alerta.removeClass('d-none alert-danger').addClass('alert-success').text('¡Alquiler eliminado exitosamente!');
-            $(this).closest('tr').remove();
-        }else{
-            alerta.removeClass('d-none alert-success').addClass('alert-danger').text('Error: '+data);
+    $.ajax({
+        url: './home_section/scripts/removeRent.php', 
+        type: 'POST', 
+        dataType: 'json', 
+        data: { rent_id: idRent },
+        success: function (response) {
+            const alerta = $('#alerta2');
+
+            if (response.success) { 
+                alerta.removeClass('d-none alert-danger').addClass('alert-success').text(response.message);
+                $(e.target).closest('tr').remove(); 
+            } else { 
+                alerta.removeClass('d-none alert-success').addClass('alert-danger').text('Error: ' + response.message);
+            }
+        },
+        error: function (xhr, status, error) { // En caso de error en la solicitud
+            console.error('Error:', error);
+            const alerta = $('#alerta2');
+            alerta.removeClass('d-none alert-success').addClass('alert-danger').text('Ocurrió un error inesperado.');
         }
-    })
-    .catch(error=>{
-        console.error('Error:',error);
     });
-
 });

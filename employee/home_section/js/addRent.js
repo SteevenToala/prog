@@ -16,8 +16,13 @@ $('#formAddRent').submit(function(e){
 
                 var nuevaFila = `<tr>
                     <td class="nombre">${data.fecha_inicio}</td>
-                    <td>${data.id_usuario}</td>
-                    <td>${data.id_vehiculo}</td>                    
+                    <td></td>
+                    <td>Activo</td>                                                            
+                    <td>${data.nombre}</td>  
+                    <td>${data.matricula}</td>
+                    <td>${data.marca}</td>                    
+                    <td>${data.modelo}</td>
+                    <td>Contrato</td>                                                            
                     <td>
                         <button class="btn btn-warning btn-sm" 
                             data-bs-toggle="modal" 
