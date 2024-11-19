@@ -28,22 +28,34 @@ if ($result_vehicle->num_rows > 0) {
         if ($stmt->execute()) {
             if ($stmt->affected_rows > 0) {
                 
-                
-                
+                $sql_vehiculo = $conn->prepare("SELECT marca, modelo,matricula FROM vehiculos WHERE id = ?");
+                $sql_vehiculo->bind_param('i',$id_vehiculo);
+                $sql_vehiculo->execute();
+                $result_vehiculo = $sql_vehiculo->get_result();
+                if($result_vehiculo->num_rows>0){
+                    while($row = mysqli_fetch_array($result_vehiculo)){
+                        $dataV[]=array(
+                            'marca' => $row['marca'],
+                            'modelo' => $row['modelo'],
+                            'matricula' => $row['matricula']
+                        );
+                    }
+                }
+                foreach($dataV as $vehiculoxd){
+                    $marca = $vehiculoxd['marca'];
+                    $modelo =$vehiculoxd['modelo'];
+                    $matricula =$vehiculoxd['matricula'];
+                }
                 
                 //AQUI VA LA CONSULTA QUE OBTIENE EL ID DEL VEHICULO PARA AGREGAR AL COMBOBOX EL ID DEL VEHICULO CON SU NOMBRE MARCA Y MODELO
-                /*$conn->commit();                
+                $conn->commit();                
                 echo json_encode([
                     'success' => true,
-                    'id' => $id_alquiler,
-                    'fecha_inicio' => $fecha_inicio,
-                    'id_usuario' => $id_usuario,
                     'marca' => $marca,
                     'modelo' => $modelo,
-                    'matricula' => $matricula,
-                    'nombre' => $user['nombre'],
-                    'id_vehiculo' => $id_vehiculo
-                ]);*/
+                    'matricula' => $matricula
+                    
+                ]);
             } else {
                 $conn->rollback();
                 echo json_encode(['success' => true, 'message' => 'No se afecto a ninguna columna']);
