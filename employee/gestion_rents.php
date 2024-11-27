@@ -74,14 +74,14 @@ if ($result->num_rows > 0) {
                     </thead>
                     <tbody id="tablaRents">
                         <?php foreach ($data as $rent): ?>
-                            <tr>
+                            <tr id="rent-<?php echo $rent['id']?>">
                                 <th><?php echo $rent['fecha_inicio'] ?></th>
                                 <th><?php echo $rent['fecha_fin'] ?></th>
                                 <th><?php echo $rent['estado'] ?></th>
-                                <th><?php echo $rent['nombre_usuario'] ?></th>
-                                <th><?php echo $rent['matricula'] ?></th>
-                                <th><?php echo $rent['marca'] ?></th>
-                                <th><?php echo $rent['modelo'] ?></th>
+                                <th class="nombre"><?php echo $rent['nombre_usuario'] ?></th>
+                                <th class="matricula"><?php echo $rent['matricula'] ?></th>
+                                <th class="marca"><?php echo $rent['marca'] ?></th>
+                                <th class="modelo"><?php echo $rent['modelo'] ?></th>
                                 <th>
                                     <button class="btn btn-warning btn-sm"
                                         data-bs-toggle="modal"
@@ -94,7 +94,7 @@ if ($result->num_rows > 0) {
                                     </button>
                                 </th>
                                 <th>
-                                <button class="btn btn-warning btn-sm"
+                                <button class="btn btn-warning btn-sm editar"
                                     data-bs-toggle="modal"
                                     data-bs-target="#editModalRent"
                                     data-id="<?php echo $rent['id']; ?>"
@@ -120,6 +120,7 @@ if ($result->num_rows > 0) {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>    
     <script src="./home_section/js/addRent.js"></script>
+    <script src="./home_section/js/editRent.js"></script>
     <script src="./home_section/js/removeRent.js"></script>
     <script src="./home_section/js/contrato.js"></script>
 

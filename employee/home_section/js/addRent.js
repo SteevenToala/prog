@@ -51,8 +51,10 @@ $('#formAddRent').submit(function (e) {
 
                 $('#alerta2').removeClass('d-none alert-danger').addClass('alert-success').text('Alquiler agregado correctamente.');
                 var rentEliminar = document.getElementById('aV' + `${data.id_vehiculo}`);
+                var rentEliminarE = document.getElementById('eV' + `${data.id_vehiculo}`);
                 if (rentEliminar) {
                     rentEliminar.remove();
+                    rentEliminarE.remove();
                     console.log(`Elemento con ID "aV${data.id_vehiculo}" eliminado.`);
                 } else {
                     console.error(`No se encontró un elemento con ID "aV${data.id_vehiculo}".`);

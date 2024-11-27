@@ -47,18 +47,19 @@ if($resultv->num_rows>0){
             <!--<div class="mb-3">
               <label for="fecha_fin" class="form-label">Fecha Fin</label>
               <input type="date" class="form-control" id="fecha_fin" name="fecha_fin" required>
-            </div>-->            
+            </div>-->         
+            <input type="hidden" name="id" id="editRentID">   
             <div class="mb-3">
-              <label for="matricula_vehiculo" class="form-label">Vehiculos disponibles(marca-modelo-matricula)</label>
-              <select class="form-select" id="matricula_vehiculo" name="matricula_vehiculo" required>
+              <label for="matricula_vehiculoE" class="form-label">Vehiculos disponibles(marca-modelo-matricula)</label>
+              <select class="form-select" id="matricula_vehiculoE" name="matricula_vehiculoE" required>
               <?php foreach($datavehicles as $vehicle):?>                
-                <option value="<?php echo $vehicle['id'];?>"><?php echo $vehicle['marca'];?> - <?php echo $vehicle['modelo'];?> - <?php echo $vehicle['matricula'];?></option>                
+                <option id="eV<?php echo $vehicle['id'] ?>" value="<?php echo $vehicle['id'];?>"><?php echo $vehicle['marca'];?> - <?php echo $vehicle['modelo'];?> - <?php echo $vehicle['matricula'];?></optioni>                
                 <?php endforeach;?> 
             </select>
             </div>
             <div class="mb-3">
-              <label for="nombre_usuario" class="form-label">Nombre Usuario</label>
-              <select id="nombre_usuario" name="nombre_usuario" class="form-select" required>
+              <label for="nombre_usuarioE" class="form-label">Nombre Usuario</label>
+              <select id="nombre_usuarioE" name="nombre_usuarioE" class="form-select" required>
                 <?php foreach($dataUsers as $user):?>                
                 <option value="<?php echo $user['id'];?>"><?php echo $user['nombre'];?></option>                
                 <?php endforeach;?>

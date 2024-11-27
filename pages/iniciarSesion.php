@@ -6,6 +6,16 @@ unset($_SESSION['error']);
 
 session_start();
 include '../util/verificadorSesion.php';
+
+
+require_once '../vendor/autoload.php';
+require_once '../util/config.php';
+$client = new Google_Client();
+$client->setClientId($clientID);
+$client->setClientSecret($clientSecret);
+$client->setRedirectUri($redirectUri);
+$client->addScope("email");
+$client->addScope("profile");
 ?>
 
 <!DOCTYPE html>
@@ -122,7 +132,7 @@ include '../util/verificadorSesion.php';
 
       <!-- Botón para iniciar sesión con Google -->
       <div class="d-grid gap-2 mb-3">
-        <button type="button" class="btn btn-google">
+        <button type="button" class="btn btn-google" onclick="window.location.href='<?php echo $client->createAuthUrl(); ?>'">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
             <path fill="#4285F4" d="M24 9.5c3.24 0 6.16 1.15 8.45 3.04l6.35-6.35C34.15 3.44 29.48 1.5 24 1.5 14.96 1.5 7.15 7.18 4.3 14.95l7.68 5.98C13.64 12.72 18.43 9.5 24 9.5z" />
             <path fill="#34A853" d="M9.14 28.11C9.7 30.2 10.78 32.09 12.2 33.5l7.68-5.97C17.6 26.92 16.73 24.3 16.73 21c0-1.19.21-2.33.58-3.39L9.14 28.11z" />

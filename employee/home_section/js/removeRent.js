@@ -22,6 +22,12 @@ $(document).on('click', '.eliminar', function (e) {
                 
                 addOptionalEmilimar('matricula_vehiculo', optionVehiculo);
 
+                var optionVehiculoE = document.createElement('option');
+                optionVehiculoE.value = response.id_vehiculo;
+                optionVehiculoE.id = 'eV' + response.id_vehiculo;
+                optionVehiculoE.textContent = `${response.marca} - ${response.modelo} - ${response.matricula}`;
+                addOptionalEmilimar('matricula_vehiculoE', optionVehiculoE);
+
                 
                 $(e.target).closest('tr').remove(); 
             } else { 

@@ -3,9 +3,7 @@ include './util/conexion.php';
 
 session_start();
 
-// Verificar si el usuario ya ha iniciado sesión
 if (isset($_SESSION['usuario_id'])) {
-    // Redirigir según el tipo de usuario
     if ($_SESSION['tipo_usuario'] === 'administrador') {
         header("Location: admin/home_admin.php");
         exit();
@@ -119,5 +117,4 @@ if (isset($_SESSION['usuario_id'])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>
 </body>
-
 </html>
