@@ -8,14 +8,6 @@ session_start();
 include '../util/verificadorSesion.php';
 
 
-require_once '../vendor/autoload.php';
-require_once '../util/config.php';
-$client = new Google_Client();
-$client->setClientId($clientID);
-$client->setClientSecret($clientSecret);
-$client->setRedirectUri($redirectUri);
-$client->addScope("email");
-$client->addScope("profile");
 ?>
 
 <!DOCTYPE html>
@@ -111,42 +103,19 @@ $client->addScope("profile");
   <?php include '../util/menu.php'; ?>
 
   <div class="container mt-5 container-login">
-    <h2 class="text-center mb-4">Inicio de Sesión</h2>
+    <h2 class="text-center mb-4">Recuperar contraseña</h2>
 
     <div id="error" class="alert alert-danger" style="display:none;" role="alert"></div>
 
-    <form id="loginForm" class="w-100">
+    <form id="recoverForm" class="w-100">
       <div class="mb-3">
         <label for="email" class="form-label">Email:</label>
         <input type="email" id="email" name="email" class="form-control" placeholder="Ingresa tu email" required>
-      </div>
-
-      <div class="mb-3">
-        <label for="password" class="form-label">Contraseña:</label>
-        <input type="password" id="password" name="password" class="form-control" placeholder="Ingresa tu contraseña" required>
-      </div>
+      </div>      
 
       <div class="d-grid gap-2 mb-3">
-        <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-      </div>
-
-      <!-- Botón para iniciar sesión con Google -->
-      <div class="d-grid gap-2 mb-3">
-        <button type="button" class="btn btn-google" onclick="window.location.href='<?php echo $client->createAuthUrl(); ?>'">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-            <path fill="#4285F4" d="M24 9.5c3.24 0 6.16 1.15 8.45 3.04l6.35-6.35C34.15 3.44 29.48 1.5 24 1.5 14.96 1.5 7.15 7.18 4.3 14.95l7.68 5.98C13.64 12.72 18.43 9.5 24 9.5z" />
-            <path fill="#34A853" d="M9.14 28.11C9.7 30.2 10.78 32.09 12.2 33.5l7.68-5.97C17.6 26.92 16.73 24.3 16.73 21c0-1.19.21-2.33.58-3.39L9.14 28.11z" />
-            <path fill="#FBBC05" d="M23.95 40.5c-4.7 0-8.68-2.1-11.36-5.39l-7.67 5.97C10.4 44.91 17.1 48 24 48c5.36 0 10.33-1.8 14.14-4.91l-7.68-5.97C28.61 39.03 26.4 40.5 23.95 40.5z" />
-            <path fill="#EA4335" d="M44.5 24.5c0-1.7-.23-3.34-.64-4.91h-20v9.09h11.36c-.5 2.13-2.03 3.92-4.03 5.02l7.67 5.97c4.47-4.14 6.64-9.93 6.64-15.17z" />
-          </svg>
-          Iniciar Sesión con Google
-        </button>
-      </div>
-
-      <!-- Enlace para recuperar contraseña -->
-      <div class="forgot-password">
-        <a href="recoverPassword.php">¿Olvidaste tu contraseña?</a>
-      </div>
+        <button type="submit" class="btn btn-primary">Recuperar contraseña</button>
+      </div>    
     </form>
 
     <div class="footer mt-4">
@@ -156,13 +125,10 @@ $client->addScope("profile");
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../js/iniciarSesion.js"></script>
+  <script src="../js/recoverPassword.js"></script>
 </body>
 
 </html>
-
-
-
 
 
 
