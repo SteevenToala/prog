@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mail</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+        }
+
+        .mensaje .code {
+            width: min-content;
+            padding: 10px 30px;
+            border-radius: 10px;
+            border: 2px solid black;
+            margin-top: 20px;
+            display: flex;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="mensaje" id="mensaje">
+        <h1>Verificacion de correo electronico</h1>
+        <p>Para terminar el proceso de registro ingresa el siguiente codigo en la pagina</p>
+        <div class="code">
+            <span><span id="digit-1"></span></span>
+            <span><span id="digit-2"></span></span>
+            <span><span id="digit-3"></span></span>
+        </div>
+    </div>
+</body>
+
+
+</html>
