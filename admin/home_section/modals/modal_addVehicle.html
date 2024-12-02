@@ -6,7 +6,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="formAddVehicle">
+                <form id="formAddVehicle" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="marca" class="form-label">Marca</label>
                         <input type="text" class="form-control" id="marca" name="marca" required>
@@ -27,7 +27,7 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="tarifa" class="form-label">tarifa</label>
+                        <label for="tarifa" class="form-label">Tarifa</label>
                         <input type="number" class="form-control" id="tarifa" name="tarifa" required>
                     </div>
                     <div class="mb-3">
@@ -42,6 +42,10 @@
                     <div class="mb-3">
                         <label for="color" class="form-label">Color</label>
                         <input type="text" class="form-control" id="color" name="color" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="imagen" class="form-label">Subir Imagen</label>
+                        <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Agregar Vehiculo</button>
                 </form>

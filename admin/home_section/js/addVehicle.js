@@ -1,56 +1,60 @@
 $('#formAddVehicle').submit(function(e) {
-    e.preventDefault(); // Prevenir la recarga de la página
+    e.preventDefault(); 
 
-    var formData = $(this).serialize(); // Serializar los datos del formulario
+    var formData = new FormData(this); 
 
     $.ajax({
-        url: './home_section/scripts/addVehicle.php',  // Ruta del archivo PHP que procesa la adición de usuarios
+        url: './home_section/scripts/addVehicle.php', 
         type: 'POST',
         data: formData,
+        contentType: false, 
+        processData: false, 
         success: function(response) {
-            var data = JSON.parse(response);
-            
-            if (data.success) {
-                // Cerrar el modal
-                var modal = bootstrap.Modal.getInstance(document.getElementById('addVehicleModal'));
-                modal.hide();
-
-                // Añadir la nueva fila a la tabla de usuarios
-                var nuevaFila = `<tr id="vehicle-${data.id}">
-                    <td class="marca">${data.marca}</td>
-                    <td class="modelo">${data.modelo}</td>
-                    <td class="matricula">${data.matricula}</td>
-                    <td class="tarifa">${data.tarifa}</td>
-                    <td class="estado">${data.estado}</td>
-                    <td class="color">${data.color}</td>
-                    <td class="tipo">${data.tipo}</td>
-                    <td class="disponibilidad">${data.disponibilidad}</td>
-                    <td>
-                        <button class="btn btn-warning btn-sm" 
-                            data-bs-toggle="modal" 
-                            data-bs-target="#editModalVehicle" 
-                            data-id="${data.id}" 
-                            data-editMarca="${data.marca}"
-                            data-editModelo="${data.modelo}"
-                            data-editMatricula="${data.matricula}"
-                            data-editTarifa="${data.tarifa}"
-                            data-editEstado="${data.estado}"
-                            data-editColor="${data.color}"
-                            data-editTipo="${data.tipo}"
-                            >
-                            Editar
-                        </button>
-                        <button class="btn btn-danger btn-sm eliminar" data-id="${data.id}">Eliminar</button>
-                    </td>
-                </tr>`;
+            try {
+                var data = JSON.parse(response); 
                 
-                $('#tablaUsuarios').append(nuevaFila);
+                if (data.success) {
+                    
+                    var modal = bootstrap.Modal.getInstance(document.getElementById('addVehicleModal'));
+                    modal.hide();
 
-                // Mostrar mensaje de éxito
-                $('#alertaVehicle').removeClass('d-none alert-danger').addClass('alert-success').text('Usuario agregado correctamente.');
-            } else {
-                // Mostrar el mensaje de error del servidor
-                $('#alertaVehicle').removeClass('d-none alert-success').addClass('alert-danger').text(data.message);
+                    
+                    var nuevaFila = `<tr id="vehicle-${data.id}">
+                        <td class="marca">${data.marca}</td>
+                        <td class="modelo">${data.modelo}</td>
+                        <td class="matricula">${data.matricula}</td>
+                        <td class="tarifa">${data.tarifa}</td>
+                        <td class="estado">${data.estado}</td>
+                        <td class="color">${data.color}</td>
+                        <td class="disponibilidad">${data.disponibilidad}</td>
+                        <td>
+                            <button class="btn btn-warning btn-sm" 
+                                data-bs-toggle="modal" 
+                                data-bs-target="#editModalVehicle" 
+                                data-id="${data.id}" 
+                                data-editMarca="${data.marca}"
+                                data-editModelo="${data.modelo}"
+                                data-editMatricula="${data.matricula}"
+                                data-editTarifa="${data.tarifa}"
+                                data-editEstado="${data.estado}"
+                                data-editColor="${data.color}"
+                                >
+                                Editar
+                            </button>
+                            <button class="btn btn-danger btn-sm eliminar" data-id="${data.id}">Eliminar</button>
+                        </td>
+                    </tr>`;
+
+                    $('#tablaVehiculos').append(nuevaFila); 
+
+                    
+                    $('#alertaVehicle').removeClass('d-none alert-danger').addClass('alert-success').text('Vehículo agregado correctamente.');
+                } else {
+                    
+                    $('#alertaVehicle').removeClass('d-none alert-success').addClass('alert-danger').text(data.message);
+                }
+            } catch (e) {                
+                $('#alertaVehicle').removeClass('d-none alert-success').addClass('alert-danger').text('Error al procesar la respuesta del servidor.');
             }
         },
         error: function(xhr, status, error) {
