@@ -43,7 +43,7 @@ if (isset($_SESSION['usuario_id'])) {
         <div class="hero-overlay"></div>
         <h1>Encuentra el Auto Perfecto</h1>
         <p>Viaja con estilo y comodidad, a tu propio ritmo.</p>
-        <a href="#" class="btn btn-primary">Explorar Autos</a>
+        <a href="./pages/catalogo.php" class="btn btn-primary">Explorar Autos</a>
     </section>
 
     <!-- Sección de Galería de Autos -->
