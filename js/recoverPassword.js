@@ -2,9 +2,9 @@ const modal = new bootstrap.Modal(document.getElementById('codeModal'));
 const modalPassword = new bootstrap.Modal(document.getElementById('passwordModal'));
 const modalConfirmation = new bootstrap.Modal(document.getElementById('successPasswordModal'));
 
-const digit1 = $('#digit1'); // Selector para el primer campo de entrada
-const digit2 = $('#digit2'); // Selector para el segundo campo de entrada
-const digit3 = $('#digit3'); // Selector para el tercer campo de entrada
+const digit1 = $('#digit1'); 
+const digit2 = $('#digit2'); 
+const digit3 = $('#digit3'); 
 
 var buttonVerify = document.getElementById('verifyCode');
 
