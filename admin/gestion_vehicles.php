@@ -25,6 +25,15 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo_usuario'] != 'administrad
         .eliminarR {
             color: black;
         }
+        .xd{
+            display: flex;
+            width: 90%;
+            height: 90%;
+            background-color: aliceblue;
+            border-radius: 20px;
+            padding: 10px;
+            overflow-x: scroll;
+        }
     </style>
 </head>
 
@@ -48,10 +57,10 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo_usuario'] != 'administrad
             <main class="col-md-9 ms-sm-auto col-lg-10 main-content">
                 <h1>Bienvenido, Administrador</h1>
                 
-             
+                <div class="xd">
                 <!-- Sección de Listar Vehiculos -->
                 <?php include './home_section/listVehicle.php'; ?>
-                                
+                </div>
 
             </main>
         </div>

@@ -5,7 +5,7 @@ $id_vehiculo = intval($_POST['matricula_vehiculo']);
 $id_usuario = intval($_POST['nombre_usuario']);
 $fecha_inicio = date('Y-m-d');
 
-// Iniciar la transacción para asegurar la integridad
+
 $conn->begin_transaction();
 
 try {    
@@ -19,7 +19,7 @@ try {
         $update_sql->bind_param("i", $id_vehiculo);
 
         if ($update_sql->execute()) {
-            // Confirmar la transacción si ambas consultas fueron exitosas
+            
             $vehicle_sql = $conn->prepare("SELECT marca, modelo, matricula FROM vehiculos WHERE id=?");
             $vehicle_sql->bind_param("i", $id_vehiculo);
             $vehicle_sql->execute();
@@ -75,7 +75,7 @@ try {
             }
             
         } else {
-            // Revertir la transacción si falla la actualización
+            
             $conn->rollback();
             echo json_encode(['success' => false, 'message' => 'Error al actualizar la disponibilidad del vehículo']);
         }
@@ -83,12 +83,12 @@ try {
         echo json_encode(['success' => false, 'message' => 'Error al insertar el alquiler']);
     }
 
-    // Cerrar los statements
+    
     $sql->close();
     $update_sql->close();
 
 } catch (Exception $e) {
-    // Manejo de excepciones en caso de errores inesperados
+    
     $conn->rollback();
     echo json_encode(['success' => false, 'message' => 'Error en la transacción: ' . $e->getMessage()]);
 }

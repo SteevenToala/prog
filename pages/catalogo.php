@@ -143,9 +143,9 @@ if ($result->num_rows > 0) {
             const matricula = card.getAttribute('data-matricula');
 
             if (marca.includes(query) || modelo.includes(query) || matricula.includes(query)) {
-                card.style.display = ''; // Mostrar tarjeta
+                card.style.display = ''; 
             } else {
-                card.style.display = 'none'; // Ocultar tarjeta
+                card.style.display = 'none'; 
             }
         });
     });

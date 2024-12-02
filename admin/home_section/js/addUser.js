@@ -1,10 +1,10 @@
 $('#formAddUser').submit(function(e) {
-    e.preventDefault(); // Prevenir la recarga de la página
+    e.preventDefault(); 
 
-    var formData = $(this).serialize(); // Serializar los datos del formulario
+    var formData = $(this).serialize(); 
 
     $.ajax({
-        url: './home_section/scripts/addUser.php',  // Ruta del archivo PHP que procesa la adición de usuarios
+        url: './home_section/scripts/addUser.php',  
         type: 'POST',
         data: formData,
         success: function(response) {
@@ -35,10 +35,10 @@ $('#formAddUser').submit(function(e) {
                 
                 $('#tablaUsuarios').append(nuevaFila);
 
-                // Mostrar mensaje de éxito
+                
                 $('#alerta2').removeClass('d-none alert-danger').addClass('alert-success').text('Usuario agregado correctamente.');
             } else {
-                // Mostrar el mensaje de error del servidor
+                
                 $('#alerta2').removeClass('d-none alert-success').addClass('alert-danger').text(data.message);
             }
         },

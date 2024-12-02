@@ -23,7 +23,7 @@ body {
     overflow-y: auto;
 }
 .table {
-    margin-bottom: 0; /* Asegura que la tabla no añada márgenes adicionales */
+    margin-bottom: 0; 
 }
 
 .vh-100 {
@@ -35,14 +35,14 @@ body {
     height: 100vh;
     position: sticky;
     top: 0;
-    background: linear-gradient(180deg, #2c3e50, #4b636e); /* Degradado más suave */
+    background: linear-gradient(180deg, #2c3e50, #4b636e); 
     color: #ffffff;
     box-shadow: 3px 0 12px rgba(0, 0, 0, 0.2);
     transition: background 0.3s ease-in-out;
 }
 
 .sidebar:hover {
-    background: linear-gradient(180deg, #2c3e50, #34495e); /* Cambios de degradado */
+    background: linear-gradient(180deg, #2c3e50, #34495e); 
 }
 
 .sidebar h4 {
@@ -88,7 +88,7 @@ body {
     transform: translateY(-50%) scale(1);
 }
 
-/* Main Content */
+
 .main-content {
     padding: 40px;
     
@@ -108,7 +108,7 @@ body {
     }
 }
 
-/* Content Sections */
+
 .content-section {
     display: none;
 }
@@ -117,7 +117,7 @@ body {
     display: block;
 }
 
-/* Responsividad */
+
 @media (max-width: 768px) {
     .sidebar {
         height: auto;

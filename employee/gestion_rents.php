@@ -41,6 +41,17 @@ if ($result->num_rows > 0) {
 
 
     <link rel="stylesheet" href="../styles/home_admin.css">
+    <style>
+        .xd{
+            display: flex;
+            width: 90%;
+            height: 90%;
+            background-color: aliceblue;
+            border-radius: 20px;
+            padding: 10px;
+            overflow-x: scroll;
+        }
+    </style>
 </head>
 
 <body>
@@ -52,7 +63,7 @@ if ($result->num_rows > 0) {
     ?>
 
     <div class="container-fluid vh-100 d-flex flex-column overflow-hidden">
-        <div  class="row flex-grow-1 overflow-auto">
+        <div  class="row flex-grow-1 ">
             <?php
             include './home_section/scripts/menu.php'
             ?>

@@ -1,12 +1,12 @@
 <?php
 include '../../../util/conexion.php';
-// Obtener los datos del formulario
+
 $nombre = $_POST['nombre'];
 $email = $_POST['email'];
 $password_hash = password_hash($_POST['password'],PASSWORD_DEFAULT);
 $tipo_usuario = $_POST['tipo_usuario'];
 
-// Usar una consulta preparada para evitar inyección SQL
+
 $sql = $conn->prepare("INSERT INTO usuarios (nombre, email, password, tipo_usuario) VALUES (?, ?, ?, ?)");
 $sql->bind_param("ssss", $nombre, $email, $password_hash, $tipo_usuario);
 

@@ -18,6 +18,17 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../styles/home_admin.css">
     <link rel="stylesheet" href="../styles/footer.css">
+    <style>
+        .xd{
+            display: flex;
+            width: 90%;
+            height: 90%;
+            background-color: aliceblue;
+            border-radius: 20px;
+            padding: 10px;
+            overflow-x: scroll;
+        }
+    </style>
     <title>Gestion de devoluciones</title>
 
 </head>

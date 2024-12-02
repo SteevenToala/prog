@@ -1,22 +1,22 @@
 <?php
 session_start();
 
-// Verificar si el usuario está autenticado y es administrador
+
 if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo_usuario'] != 'administrador') {
     header("Location: ../pages/iniciarSesion.php");
     exit();
 }
 
-include '../util/conexion.php'; // Asegúrate de tener tu conexión a la base de datos aquí
+include '../util/conexion.php'; 
 
-// Procesar el formulario si se envió
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $tipo_vehiculo = $_POST['tipo_vehiculo'];
     $duracion_alquiler = $_POST['duracion_alquiler'];
     $temporada = $_POST['temporada'];
     $precio = $_POST['precio'];
 
-    // Insertar nueva tarifa en la base de datos
+    
     $sql = "INSERT INTO tarifas (tipo_vehiculo, duracion_alquiler, temporada, precio) VALUES (?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("siss", $tipo_vehiculo, $duracion_alquiler, $temporada, $precio);
@@ -42,14 +42,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .eliminarR {
             color: black;
         }
+        .xd{
+            display: flex;
+            width: 90%;
+            height: 90%;
+            background-color: aliceblue;
+            border-radius: 20px;
+            padding: 10px;
+            overflow-x: scroll;
+        }
     </style>
 </head>
 
 <body>
 
     <div class="container-fluid">
-        <div class="row">
-            <!-- Sidebar -->
+        <div class="row">            
             <?php
             include './home_section/scripts/menu.php';
             ?>
@@ -57,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
              <!-- Contenido Principal -->
              <main class="col-md-9 ms-sm-auto col-lg-10 main-content">
                 <h1 class="mt-5">Gestión de Tarifas</h1>
-
+                <div class="xd">
                 <!-- Formulario para agregar tarifas -->
                 <form method="post" class="mt-4">
                     <div class="mb-3">
@@ -86,9 +94,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <button type="submit" class="btn btn-primary">Agregar Tarifa</button>
                 </form>
-
+                </div>
                 <!-- Mostrar lista de tarifas -->
                 <h2 class="mt-5">Lista de Tarifas</h2>
+                <div class="xd">
                 <table class="table">
                     <thead>
                         <tr>
@@ -113,7 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         ?>
                     </tbody>
                 </table>
-
+                </div>
             </main>
         </div>
     </div>

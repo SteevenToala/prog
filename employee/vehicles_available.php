@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Verificar si el usuario está autenticado y es un usuario normal
+
 if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo_usuario'] != 'empleado') {
     header("Location: ../pages/iniciarSesion.php");
     exit();
@@ -49,6 +49,17 @@ $conn->close();
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../styles/home_admin.css">
     <link rel="stylesheet" href="../styles/footer.css">
+    <style>
+        .xd{
+            display: flex;
+            width: 90%;
+            height: 90%;
+            background-color: aliceblue;
+            border-radius: 20px;
+            padding: 10px;
+            overflow-x: scroll;
+        }
+    </style>
 </head>
 
 <body>
@@ -62,6 +73,7 @@ $conn->close();
             <!-- Contenido Principal -->
             <main class="col-12 mx-auto px-4 main-content d-flex flex-column h-100">
                 <h1>Vehiculos Disponibles</h1>
+                <div class="xd">
                 <table class="table">
                     <thead>
                         <tr>
@@ -84,7 +96,7 @@ $conn->close();
                         <?php endforeach; ?>
                     </tbody>
                 </table>
-
+                </div>
             </main>
         </div>
     </div>

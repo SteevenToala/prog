@@ -1,9 +1,9 @@
-// Script para pasar datos al modal
+
 var editModalVehicle = document.getElementById('editModalVehicle');
 editModalVehicle.addEventListener('show.bs.modal', function (event) {
-    var button = event.relatedTarget; // Botón que activa el modal
-    var vehicleId = button.getAttribute('data-id'); // Obtener el id del usuario
-    var marca = button.getAttribute('data-editMarca'); // Obtener el nombre del usuario
+    var button = event.relatedTarget; 
+    var vehicleId = button.getAttribute('data-id'); 
+    var marca = button.getAttribute('data-editMarca'); 
     var modelo = button.getAttribute('data-editModelo');
     var matricula = button.getAttribute('data-editMatricula');
     var tarifa = button.getAttribute('data-editTarifa');
@@ -12,7 +12,7 @@ editModalVehicle.addEventListener('show.bs.modal', function (event) {
     var tipo_vehiculo = button.getAttribute('data-editTipo');
     var disponibilidad = button.getAttribute('data-editDisponibilidad');
 
-    // Asignar los valores a los campos del modal
+    
     document.getElementById('editVehicleId').value = vehicleId;
     document.getElementById('editMarca').value = marca;
     document.getElementById('editModelo').value = modelo;
@@ -24,15 +24,14 @@ editModalVehicle.addEventListener('show.bs.modal', function (event) {
     document.getElementById('editDisponibilidad').value = disponibilidad;
 });
 
-// Limpiar el modal al cerrarse para evitar que queden valores antiguos
+
 $('#editModalVehicle').on('hidden.bs.modal', function () {
-    $('#editFormVehicle')[0].reset(); // Restablecer el formulario
+    $('#editFormVehicle')[0].reset(); 
 });
 
-// Enviar el formulario de edición mediante AJAX
-// Enviar el formulario de edición mediante AJAX
+
 $('#editFormVehicle').submit(function (e) {
-    e.preventDefault(); // Prevenir que el formulario recargue la página
+    e.preventDefault(); 
 
     var vehicleId = $('#editVehicleId').val();
     var marca = $('#editMarca').val();
@@ -64,11 +63,11 @@ $('#editFormVehicle').submit(function (e) {
             estado: estado
         },
         success: function (response) {
-            console.log('Respuesta del servidor:', response); // Depura la respuesta
+            console.log('Respuesta del servidor:', response);
 
-            // Asegúrate de que 'response.trim()' limpie bien los espacios
+            
             if (response.trim() === 'success') {
-                // Actualizar la fila en la tabla sin recargar la página
+                
                 $('#vehicle-' + vehicleId + ' .marca').text(marca);
                 $('#vehicle-' + vehicleId + ' .modelo').text(modelo);
                 $('#vehicle-' + vehicleId + ' .matricula').text(matricula);
@@ -78,7 +77,7 @@ $('#editFormVehicle').submit(function (e) {
                 $('#vehicle-' + vehicleId + ' .tipo').text(tipo_vehiculo);
                 $('#vehicle-' + vehicleId + ' .disponibilidad').text(disponibilidad);
 
-                // Actualizar el atributo data- del botón Editar
+                
                 $('button[data-id="' + vehicleId + '"]').attr({
                     'data-editMarca': marca,
                     'data-editModelo': modelo,
@@ -90,21 +89,21 @@ $('#editFormVehicle').submit(function (e) {
                     'data-editEstado': estado
                 });
 
-                // Cerrar el modal
+                
                 var modalVehicle = bootstrap.Modal.getInstance(editModalVehicle);
                 modalVehicle.hide();
 
-                // Mostrar mensaje de éxito
+                
                 $('#alertaVehicle').removeClass('d-none alert-danger').addClass('alert-success').text('Vehículo actualizado correctamente.');
             } else {
-                console.log('Error en la respuesta: ', response); // Depurar errores
-                // Mostrar mensaje de error
+                console.log('Error en la respuesta: ', response); 
+                
                 $('#alertaVehicle').removeClass('d-none alert-success').addClass('alert-danger').text('Error al actualizar vehículo.');
             }
         },
         error: function (xhr, status, error) {
-            console.log('Error en la solicitud AJAX:', error); // Depurar errores
-            // Mostrar mensaje de error en caso de fallo en la solicitud
+            console.log('Error en la solicitud AJAX:', error); 
+            
             $('#alertaVehicle').removeClass('d-none alert-success').addClass('alert-danger').text('Error de conexión.');
         }
     });

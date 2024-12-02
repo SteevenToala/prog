@@ -1,7 +1,7 @@
 <?php
 include '../../../util/conexion.php';
 
-// Recuperar datos del formulario
+
 $marca = $_POST['marca'];
 $modelo = $_POST['modelo'];
 $matricula = $_POST['matricula'];
@@ -10,23 +10,23 @@ $estado = $_POST['estado'];
 $color = $_POST['color'];
 $disponibilidad = $_POST['disponibilidad'];
 
-// Manejo de la imagen
+
 $imagenNombre = $_FILES['imagen']['name'];
 $imagenTmp = $_FILES['imagen']['tmp_name'];
 $directorioDestino = "../../../images/autos/";
 
-// Verificar que la carpeta existe, si no, crearla
+
 if (!file_exists($directorioDestino)) {
     mkdir($directorioDestino, 0777, true);
 }
 
-// Generar un nombre único para evitar colisiones
+
 $nombreUnicoImagen = uniqid() . "_" . basename($imagenNombre);
 $rutaFinalImagen = $directorioDestino . $nombreUnicoImagen;
 
-// Mover la imagen al directorio destino
+
 if (move_uploaded_file($imagenTmp, $rutaFinalImagen)) {
-    // Insertar datos en la base de datos
+    
     $sql = $conn->prepare("INSERT INTO vehiculos(marca, modelo, matricula, tarifa, estado, color, disponibilidad, imagen) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
     $sql->bind_param("ssssssss", $marca, $modelo, $matricula, $tarifa, $estado, $color, $disponibilidad, $nombreUnicoImagen);
 
@@ -54,7 +54,7 @@ if (move_uploaded_file($imagenTmp, $rutaFinalImagen)) {
     echo json_encode(['success' => false, 'message' => 'Error al subir la imagen']);
 }
 
-// Cerrar conexión
+
 mysqli_close($conn);
 ?>
 

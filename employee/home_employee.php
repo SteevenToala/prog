@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Verificar si el usuario está autenticado y es un usuario normal
+
 if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo_usuario'] != 'empleado') {
     header("Location: ../pages/iniciarSesion.php");
     exit();
@@ -21,12 +21,25 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo_usuario'] != 'empleado') 
     <link rel="stylesheet" href="../styles/footer.css">
     <style>
         canvas {
-    border-radius: 10px; /* Bordes redondeados */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave para los gráficos */
-    margin-bottom: 30px; /* Espaciado inferior */
-    width: 400px !important;
-    height: 400px !important;
-}
+            border-radius: 10px;
+            /* Bordes redondeados */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Sombra suave para los gráficos */
+            margin-bottom: 30px;
+            /* Espaciado inferior */
+            width: 400px !important;
+            height: 400px !important;
+        }
+
+        .xd {
+            display: flex;
+            width: 90%;
+            height: 90%;
+            background-color: aliceblue;
+            border-radius: 20px;
+            padding: 10px;
+            overflow-x: scroll;
+        }
     </style>
 </head>
 
@@ -41,12 +54,12 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo_usuario'] != 'empleado') 
             <!-- Contenido Principal -->
             <main class="col-12 mx-auto px-4 main-content d-flex flex-column h-100">
                 <h1>Bienvenido, Empleado</h1>
-
+                <div class="xd">
                 <!-- Sección de Dashboard -->
                 <div id="dashboard" class="content-section active">
                     <h2>Dashboard</h2>
                     <p>Información general sobre las tareas y alquileres actuales.</p>
-                    
+
                     <div class="row">
                         <div class="col-md-6">
                             <h4>Estadísticas de Alquileres</h4>
@@ -58,7 +71,7 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo_usuario'] != 'empleado') 
                         </div>
                     </div>
                 </div>
-
+                </div>
                 <!-- Sección de Alquileres -->
                 <div id="alquileres" class="content-section">
                     <h2>Alquileres Actuales</h2>
@@ -94,7 +107,7 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo_usuario'] != 'empleado') 
                     </table>
                 </div>
 
-                
+
                 <div id="vehiculos" class="content-section">
                     <h2>Vehículos Disponibles</h2>
                     <table class="table table-striped">

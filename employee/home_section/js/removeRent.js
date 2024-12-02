@@ -42,7 +42,7 @@ $(document).on('click', '.eliminar', function (e) {
     });
 });
 
-// Función para agregar una nueva opción al select
+
 function addOptionalEmilimar(idSelect, option) {
     var select = document.getElementById(idSelect);
     if (!select) {
