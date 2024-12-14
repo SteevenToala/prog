@@ -67,7 +67,7 @@ include '../util/verificadorSesion.php';
       <h2 class="text-center">Registro de Usuario</h2>
       
       <!-- Alerta de notificación -->
-      <div id="alerta" class="alert d-none" role="alert"></div>      
+      <div id="alerta" class="alert alert-danger" style="display:none;" role="alert"></div>
 
       <!-- Formulario de registro -->
       <form id="registroForm">
@@ -85,15 +85,10 @@ include '../util/verificadorSesion.php';
           <label for="password" class="form-label">Contraseña:</label>
           <input type="password" id="password" name="password" class="form-control" placeholder="Ingresa tu contraseña" required>
         </div>
-
+       
         <div class="mb-4">
-          <label for="tipo_usuario" class="form-label">Tipo de Usuario:</label>
-          <select id="tipo_usuario" name="tipo_usuario" class="form-select" required>
-            <option value="" disabled selected>Selecciona un tipo de usuario</option>
-            <option value="administrador">Administrador</option>
-            <option value="empleado">Empleado</option>
-            <option value="cliente">Cliente</option>
-          </select>
+          <label for="passwordConfirm" class="form-label">Contraseña:</label>
+          <input type="password" id="passwordConfirm" name="passwordConfirm" class="form-control" placeholder="Confirma tu contraseña" required>
         </div>
 
         <div class="d-grid gap-2">
@@ -107,6 +102,11 @@ include '../util/verificadorSesion.php';
       </div>
     </div>
   </div>
+
+  <?php 
+  include '../util/codigomodal.html';
+  include '../util/modalCRegistrar.html'
+  ?>
 
   <!-- Scripts de Bootstrap y jQuery -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>

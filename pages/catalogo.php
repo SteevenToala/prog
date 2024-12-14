@@ -93,7 +93,7 @@ if ($result->num_rows > 0) {
 <body>
 <?php include "../util/menu.php"; ?>
 <div class="container my-5">
-    <h1 class="text-center mb-4">Catálogo de Vehículos</h1>
+    <h1 class="text-center mb-4">Catalogo de Vehiculos</h1>
 
     <!-- Barra de búsqueda -->
     <div class="mb-4">

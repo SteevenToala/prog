@@ -25,21 +25,22 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo_usuario'] != 'cliente') {
         }
 
         .sidebar {
-            height: 100vh;
-            position: sticky;
-            top: 0;
             background-color: #343a40;
-            color: white;
         }
 
         .sidebar a {
             color: #fff;
-            padding: 15px;
+            padding: 10px 15px;
             display: block;
+            text-decoration: none;
             transition: background-color 0.3s;
         }
 
         .sidebar a:hover {
+            background-color: #495057;
+        }
+
+        .sidebar .nav-item .nav-link.active {
             background-color: #495057;
         }
 
@@ -61,30 +62,36 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo_usuario'] != 'cliente') {
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
-            <nav class="col-md-3 col-lg-2 sidebar">
-                <h4 class="text-center mt-3">Menú del Cliente</h4>
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#" onclick="showSection('dashboard')">
-                            <i class="fas fa-tachometer-alt"></i> Dashboard
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="showSection('misAlquileres')">
-                            <i class="fas fa-car"></i> Mis Alquileres
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="showSection('vehiculosDisponibles')">
-                            <i class="fas fa-car-side"></i> Vehículos Disponibles
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-danger" href="../util/logout.php">
-                            <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
-                        </a>
-                    </li>
-                </ul>
+            <nav class="col-md-3 col-lg-2 sidebar navbar navbar-expand-md navbar-dark flex-md-column">
+                <a class="navbar-brand text-center mt-3" href="#">Menú del Cliente</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu"
+                    aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="sidebarMenu">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#" onclick="showSection('dashboard')">
+                                <i class="fas fa-tachometer-alt"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="showSection('misAlquileres')">
+                                <i class="fas fa-car"></i> Mis Alquileres
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="showSection('vehiculosDisponibles')">
+                                <i class="fas fa-car-side"></i> Vehículos Disponibles
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-danger" href="../util/logout.php">
+                                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </nav>
 
             <!-- Contenido Principal -->

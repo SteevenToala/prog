@@ -4,7 +4,7 @@ include 'conexion.php';
 $nombre = $_POST['nombre'];
 $email = $_POST['email'];
 $password_hash = password_hash($_POST['password'], PASSWORD_DEFAULT); // Encriptar la contraseña
-$tipo_usuario = $_POST['tipo_usuario'];
+$tipo_usuario = 'cliente';
 
 // Preparar la consulta SQL para insertar el nuevo usuario
 $sql = "INSERT INTO usuarios (nombre, email, password, tipo_usuario) VALUES (?, ?, ?, ?)";
@@ -17,9 +17,9 @@ $stmt->bind_param("ssss", $nombre, $email, $password_hash, $tipo_usuario);
 
 // Ejecutar la declaración
 if ($stmt->execute()) {    
-    echo "Registro exitoso!";
+    echo json_encode(['success' => true, 'message' => 'El usuario se ha registrado correctamente']);
 } else {
-    echo "Error: " . $stmt->error;
+    echo json_encode(['success' => false, 'message' => 'Error al registrar']);
 }
 
 // Cerrar la conexión
