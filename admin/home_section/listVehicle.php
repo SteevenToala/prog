@@ -1,5 +1,5 @@
 <?php include '../util/conexion.php';
-$sql = "SELECT id, marca, modelo,matricula,disponibilidad,tarifa,estado,color,fecha_registro,tipo_vehiculo FROM vehiculos";
+$sql = "SELECT id, marca, modelo,matricula,disponibilidad,tarifa,estado,color,fecha_registro,tipo_vehiculo,imagen,tipo_transmision,tipo_combustible,cilindraje,descripcion FROM vehiculos";
 $result = mysqli_query($conn, $sql);
 
 $datavehicle = array();
@@ -15,7 +15,12 @@ if ($result->num_rows > 0) {
             'estado' => $row['estado'],
             'tipo_vehiculo' => $row['tipo_vehiculo'],
             'color' => $row['color'],
-            'fecha_registro'=> $row['fecha_registro']
+            'imagen' => $row['imagen'],
+            'tipo_combustible' => $row['tipo_combustible'],
+            'tipo_transmision' => $row['tipo_transmision'],
+            'cilindraje' => $row['cilindraje'],
+            'descripcion' => $row['descripcion'],
+            'fecha_registro' => $row['fecha_registro']
         );
     }
 } else {
@@ -27,57 +32,54 @@ $conn->close();
 <div id="listVehicles" class="content-section active">
     <h2>Listar Vehiculos</h2>
     <div id="alertaVehicle" class="alert d-none" role="alert"></div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Marca</th>
-                <th>Modelo</th>
-                <th>Matricula</th>                
-                <th>Tarifa</th>      
-                <th>Estado</th>               
-                <th>Color</th>                 
-                <th>Tipo</th>
-                <th>Disponibilidad</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody id="tablaUsuarios">
-            <?php foreach ($datavehicle as $vehicle) : ?>
-                <tr id="vehicle-<?php echo $vehicle['id']; ?>">
-                    <td class="marca"><?php echo htmlspecialchars($vehicle['marca'], ENT_QUOTES, 'UTF-8'); ?></td>
-                    <td class="modelo"><?php echo htmlspecialchars($vehicle['modelo'], ENT_QUOTES, 'UTF-8'); ?></td>
-                    <td class="matricula"><?php echo htmlspecialchars($vehicle['matricula'], ENT_QUOTES, 'UTF-8'); ?></td>
-                    <td class="tarifa"><?php echo htmlspecialchars($vehicle['tarifa'], ENT_QUOTES, 'UTF-8'); ?></td>
-                    <td class="estado"><?php echo htmlspecialchars($vehicle['estado'], ENT_QUOTES, 'UTF-8'); ?></td>
-                    <td class="color"><?php echo htmlspecialchars($vehicle['color'], ENT_QUOTES, 'UTF-8'); ?></td>
-                    <td class="tipo"><?php echo htmlspecialchars($vehicle['tipo_vehiculo'], ENT_QUOTES, 'UTF-8'); ?></td>
-                    <td class="disponibilidad"><?php echo $vehicle['disponibilidad']; ?></td>
-                    <td>
-                        <button class="btn btn-warning btn-sm" 
-                            data-bs-toggle="modal" 
-                            data-bs-target="#editModalVehicle" 
-                            data-id="<?php echo $vehicle['id']; ?>" 
-                            data-editMarca="<?php echo htmlspecialchars($vehicle['marca'], ENT_QUOTES, 'UTF-8'); ?>"
-                            data-editModelo="<?php echo htmlspecialchars($vehicle['modelo'], ENT_QUOTES, 'UTF-8'); ?>"
-                            data-editMatricula="<?php echo htmlspecialchars($vehicle['matricula'], ENT_QUOTES, 'UTF-8'); ?>"
-                            data-editTarifa="<?php echo htmlspecialchars($vehicle['tarifa'], ENT_QUOTES, 'UTF-8'); ?>"
-                            data-editEstado="<?php echo htmlspecialchars($vehicle['estado'], ENT_QUOTES, 'UTF-8'); ?>"
-                            data-editTipo="<?php echo htmlspecialchars($vehicle['tipo_vehiculo'], ENT_QUOTES, 'UTF-8'); ?>"
-                            data-editDisponibilidad="<?php echo htmlspecialchars($vehicle['disponibilidad'], ENT_QUOTES, 'UTF-8'); ?>"
-                            data-editColor="<?php echo htmlspecialchars($vehicle['color'], ENT_QUOTES, 'UTF-8'); ?>">                            
+    <div class="row" id="cardsContainer">
+        <?php foreach ($datavehicle as $vehicle) : ?>
+            <div class="col-md-4 mb-4" id="vehicle-<?php echo $vehicle['id']; ?>">
+                <div class="card h-100">
+                    <img src="../images/autos/<?php echo $vehicle['imagen']; ?>" class="card-img-top" alt="Imagen de <?php echo $vehicle['marca']; ?>" style="width: 100%; height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">Marca: <?php echo $vehicle['marca']; ?></h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Modelo: <?php echo $vehicle['modelo']; ?></h6>
+                        <p class="card-text">
+                            <strong>Matrícula:</strong> <?php echo $vehicle['matricula']; ?><br>
+                            <strong>Tarifa:</strong> <?php echo $vehicle['tarifa']; ?><br>
+                            <strong>Estado:</strong> <?php echo $vehicle['estado']; ?><br>                            
+                            <strong>Tipo:</strong> <?php echo $vehicle['tipo_vehiculo']; ?><br>
+                            <strong>Disponibilidad:</strong> <?php echo $vehicle['disponibilidad']; ?><br>
+                            <strong>Tipo de transmision:</strong> <?php echo $vehicle['tipo_transmision']; ?><br>
+                            <strong>Tipo de combustible:</strong> <?php echo $vehicle['tipo_combustible']; ?><br>
+                            <strong>Cilindraje:</strong> <?php echo $vehicle['cilindraje']; ?><br>
+                            <strong>Descripción:</strong> <?php echo $vehicle['descripcion']; ?><br>
+                        </p>
+                    </div>
+                    <div class="card-footer text-end">
+                        <button class="btn btn-warning btn-sm"
+                            data-bs-toggle="modal"
+                            data-bs-target="#editModalVehicle"
+                            data-id="<?php echo $vehicle['id']; ?>"
+                            data-editMarca="<?php echo $vehicle['marca']; ?>"
+                            data-editModelo="<?php echo $vehicle['modelo']; ?>"
+                            data-editMatricula="<?php echo $vehicle['matricula']; ?>"
+                            data-editTarifa="<?php echo $vehicle['tarifa']; ?>"
+                            data-editEstado="<?php echo $vehicle['estado']; ?>"
+                            data-editTipo="<?php echo $vehicle['tipo_vehiculo']; ?>"
+                            data-editDisponibilidad="<?php echo $vehicle['disponibilidad']; ?>"                            
+                            data-editTransmision="<?php echo $vehicle['tipo_transmision']; ?>"
+                            data-editCombustible="<?php echo $vehicle['tipo_combustible']; ?>"
+                            data-editCilindraje="<?php echo $vehicle['cilindraje']; ?>"
+                            data-editDescripcion="<?php echo $vehicle['descripcion']; ?>">
                             Editar
                         </button>
                         <button class="btn btn-danger btn-sm eliminar" data-id="<?php echo $vehicle['id']; ?>">Eliminar</button>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+
 
     <!-- Botón para abrir el modal de agregar usuario, centrado -->
     <div class="text-center mt-3">
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addVehicleModal">Agregar Vehiculo</button>
     </div>
 </div>
-
-

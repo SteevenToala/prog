@@ -5,19 +5,27 @@
                 <h5 class="modal-title" id="addUserModalLabel">Agregar Nuevo Vehiculo</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <div id="alertaadd" class="alert d-none" role="alert"></div>
             <div class="modal-body">
                 <form id="formAddVehicle" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="marca" class="form-label">Marca</label>
-                        <input type="text" class="form-control" id="marca" name="marca" required>
+                        <input type="text" class="form-control" id="marca" name="marca" aria-describedby="marcaHelp"
+                            required>
+                        <small id="marcaHelp" class="form-text text-muted">Ingrese la marca del vehículo.</small>
+
                     </div>
                     <div class="mb-3">
                         <label for="modelo" class="form-label">Modelo</label>
                         <input type="text" class="form-control" id="modelo" name="modelo" required>
+                        <small id="modeloHelp" class="form-text text-muted">Ingrese el modelo del vehículo.</small>
                     </div>
                     <div class="mb-3">
                         <label for="matricula" class="form-label">Matricula</label>
-                        <input type="text" class="form-control" id="matricula" name="matricula" required>
+                        <input type="text" class="form-control" id="matricula" name="matricula"
+                            pattern="[A-Z]{3}-[0-9]{3}" required>
+                        <small class="form-text text-muted">Formato esperado: 3 letras mayúsculas seguidas de un guion y
+                            3 dígitos numéricos (Ej: ABC-123).</small>
                     </div>
                     <div class="mb-3">
                         <label for="disponibilidad" class="form-label">Disponibilidad</label>
@@ -28,7 +36,8 @@
                     </div>
                     <div class="mb-3">
                         <label for="tarifa" class="form-label">Tarifa</label>
-                        <input type="number" class="form-control" id="tarifa" name="tarifa" required>
+                        <input type="number" class="form-control" id="tarifa" name="tarifa" min="0.01" step="0.01"
+                            required>
                     </div>
                     <div class="mb-3">
                         <label for="estado" class="form-label">Estado</label>
@@ -40,8 +49,38 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="color" class="form-label">Color</label>
-                        <input type="text" class="form-control" id="color" name="color" required>
+                        <label for="tipo_combustible" class="form-label">Tipo de combustible</label>
+                        <select id="tipo_combustible" name="tipo_combustible" class="form-select" required>
+                            <option value="extra">Extra</option>
+                            <option value="super">Super</option>
+                            <option value="diesel">Diesel</option>
+                            <option value="electricidad">Electricidad</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tipo_transmision" class="form-label">Tipo de transmision</label>
+                        <select id="tipo_transmision" name="tipo_transmision" class="form-select" required>
+                            <option value="automatico">Automatico</option>
+                            <option value="manual">Manual</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tipo_vehiculo" class="form-label">Tipo de vehiculo</label>
+                        <select id="tipo_vehiculo" name="tipo_vehiculo" class="form-select" required>
+                            <option value="auto">Auto</option>
+                            <option value="camioneta">Camioneta</option>
+                            <option value="camion">Camion</option>
+                            <option value="maquinaria">Maquinaria</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label">Descripción</label>
+                        <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cilindraje" class="form-label">Cilindraje</label>
+                        <input type="text" class="form-control" id="cilindraje" name="cilindraje"
+                            placeholder="Ej: 1.6L o 2000 cc" required>
                     </div>
                     <div class="mb-3">
                         <label for="imagen" class="form-label">Subir Imagen</label>

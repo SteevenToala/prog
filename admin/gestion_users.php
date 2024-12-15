@@ -21,6 +21,10 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo_usuario'] != 'administrad
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../styles/home_admin.css">
+    <link rel="stylesheet" href="./home_section/styles/menuA.css">
+    <link rel="stylesheet" href="./home_section/styles/tablaUsuarios.css">
+    <link rel="stylesheet" href="./home_section/styles/modeladdVehicle.css">
+    
     <style>
         .eliminarR {
             color: black;
@@ -34,6 +38,7 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo_usuario'] != 'administrad
             border-radius: 20px;
             padding: 10px;
             overflow-x: scroll;
+            margin: 0 auto;
         }
 
         /* General */
@@ -114,8 +119,7 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo_usuario'] != 'administrad
             ?>
 
             <!-- Contenido Principal -->
-            <main class="col-md-9 ms-sm-auto col-lg-10 main-content">
-                <h1>Bienvenido, Administrador</h1>
+            <main class="col-md-9 ms-sm-auto col-lg-10 main-content" style="width:100%;">                
 
                 <div class="xd">
                     <!-- Sección de Listar Vehiculos -->

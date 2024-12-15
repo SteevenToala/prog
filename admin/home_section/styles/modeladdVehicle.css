@@ -1,0 +1,255 @@
+
+        /* Ajustar el tamaño del modal */
+.modal-dialog {
+    max-width: 600px; /* Limita el ancho del modal */
+    margin: 1.75rem auto;
+}
+
+/* Asegurar que el modal no se salga de la pantalla */
+.modal-content {
+    max-height: 90vh; /* Altura máxima del modal */
+    overflow-y: auto; /* Habilitar scroll si el contenido excede */
+    border-radius: 8px; /* Bordes redondeados */
+}
+
+/* Mejora en los campos de entrada */
+.form-control, .form-select, textarea {
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.form-control:focus, .form-select:focus, textarea:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Botón primario estilizado */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.7);
+}
+
+/* Espaciado en los campos del formulario */
+.mb-3 {
+    margin-bottom: 1.5rem;
+}
+
+/* Tamaño del texto de ayuda */
+.form-text {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+/* Título del modal */
+.modal-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* General: margen del formulario */
+form {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 15px;
+}
+
+/* Scroll suave dentro del modal */
+.modal-body {
+    scroll-behavior: smooth;
+}
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***************************/
+/* Estilo general */
+/* Estilo general */
+body {
+    background-color: #f5f7fa; /* Fondo limpio y moderno */
+    font-family: 'Poppins', sans-serif; /* Tipografía profesional */
+    color: #4a4a4a;
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    color: #333333;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Contenedor principal */
+#listVehicles {
+    padding: 40px 20px;
+}
+
+/* Contenedor de alertas */
+#alertaVehicle {
+    font-size: 1rem;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 15px;
+}
+
+/* Tarjetas */
+.card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    background: #ffffff;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-img-top {
+    border-bottom: 2px solid #f0f0f0;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+.card-img-top:hover {
+    transform: scale(1.05);
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #2a2a2a;
+}
+
+.card-subtitle {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    color: #6c757d;
+}
+
+.card-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #555555;
+}
+
+.card-footer {
+    background-color: #f9f9f9;
+    border-top: 1px solid #e9ecef;
+    padding: 15px;
+}
+
+/* Botones */
+.btn {
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 8px 15px;
+    border-radius: 8px;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+.btn-warning {
+    
+    background-color: #23dc88;
+    border: none;
+    color: #212529;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-warning:hover {
+    background-color: #57ffb3;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: #ffffff;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+/* Botón centrado */
+.text-center button {
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: #007bff;
+    border: none;
+    color: #ffffff;
+    transition: background-color 0.3s ease;
+}
+
+.text-center button:hover {
+    background-color: #0056b3;
+}
+
+/* Contenedor de las tarjetas */
+#cardsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+}
+
+/* Modal */
+.modal-content {
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    background: #ffffff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 20px;
+    }
+
+    .btn {
+        font-size: 0.85rem;
+        padding: 8px 12px;
+    }
+}

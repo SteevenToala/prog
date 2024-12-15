@@ -29,6 +29,19 @@ CREATE TABLE vehiculos (
 
 ALTER TABLE vehiculos
 ADD tipo_vehiculo ENUM('auto', 'camioneta', 'camion','maquinaria');
+/*RECIEN*/
+ALTER TABLE vehiculos
+ADD tipo_transmision ENUM('automatico', 'manual');
+ALTER TABLE vehiculos
+ADD tipo_combustible ENUM('extra', 'super','diesel','electricidad');
+ALTER TABLE vehiculos
+ADD cilindraje VARCHAR(50) NOT NULL;
+ALTER TABLE vehiculos
+ADD descripcion VARCHAR(50) NOT NULL;
+ALTER TABLE vehiculos
+CHANGE COLUMN matricula unica VARCHAR(20) UNIQUE NOT NULL;
+
+
 
 ALTER TABLE vehiculos
 ADD imagen VARCHAR(50);
