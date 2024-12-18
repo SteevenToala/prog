@@ -6,6 +6,7 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo_usuario'] != 'cliente') {
     exit();
 }
 
+
 include '../util/conexion.php';
 
 // Consultar valores únicos para los filtros
