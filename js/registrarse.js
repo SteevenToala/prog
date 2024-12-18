@@ -93,7 +93,7 @@ $(document).ready(function () {
       });
 
     } else {
-      $('#alerta').removeClass('alert-success').addClass('alert-danger').text('Las contraseñas no coinciden');
+      $('#alerta').removeClass('alert-success').addClass('alert-danger').text('Las contraseñas no coinciden').show();
       console.log('las contrasenas no coinciden')
     }
   });

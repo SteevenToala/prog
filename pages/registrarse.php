@@ -83,12 +83,12 @@ include '../util/verificadorSesion.php';
 
         <div class="mb-4">
           <label for="password" class="form-label">Contraseña:</label>
-          <input type="password" id="password" name="password" class="form-control" placeholder="Ingresa tu contraseña" required>
+          <input type="password" id="password" name="password" class="form-control" placeholder="Ingresa tu contraseña" required minlength="6">
         </div>
        
         <div class="mb-4">
           <label for="passwordConfirm" class="form-label">Contraseña:</label>
-          <input type="password" id="passwordConfirm" name="passwordConfirm" class="form-control" placeholder="Confirma tu contraseña" required>
+          <input type="password" id="passwordConfirm" name="passwordConfirm" class="form-control" placeholder="Confirma tu contraseña" required minlength="6">
         </div>
 
         <div class="d-grid gap-2">

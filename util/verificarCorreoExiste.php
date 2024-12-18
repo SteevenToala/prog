@@ -9,7 +9,7 @@
     $result_usuario = $sql->get_result();
 
     if ($result_usuario->num_rows > 0) {
-        echo json_encode(['success' => false, 'message' => 'El correo ya existe']);
+        echo json_encode(['success' => false, 'message' => 'Este correo ya se encuentra registrado']);
     } else {        
         echo json_encode(['success' => true, 'message' => 'No existen usuarios con ese correo']);
     }
