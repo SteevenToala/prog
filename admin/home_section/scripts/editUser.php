@@ -3,18 +3,19 @@ include '../../../util/conexion.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id = $_POST['id'];
-    $nombre = $_POST['nombre'];
+    $password = $_POST['password'];
 
     
-    if (empty($id) || empty($nombre)) {
+    if (empty($id) || empty($password)) {
         echo 'error';
         exit;
     }
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
     
-    $sql = "UPDATE usuarios SET nombre = ? WHERE id = ?";
+    $sql = "UPDATE usuarios SET password = ? WHERE id = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("si", $nombre, $id);
+    $stmt->bind_param("si", $hashed_password, $id);
 
     if ($stmt->execute()) {
         echo 'success'; 

@@ -10,7 +10,7 @@ if ($result->num_rows > 0) {
             'nombre' => $row['nombre'],
             'email' => $row['email'],
             'tipo_usuario' => $row['tipo_usuario'],
-            'fecha_registro'=> $row['fecha_registro']
+            'fecha_registro' => $row['fecha_registro']
         );
     }
 } else {
@@ -30,7 +30,7 @@ $conn->close();
                 <th>Email</th>
                 <th>Tipo de Usuario</th>
                 <th>Fecha de Registro</th>
-                <th>Acciones</th>                
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody id="tablaUsuarios">
@@ -41,24 +41,33 @@ $conn->close();
                     <td><?php echo $usuario['tipo_usuario']; ?></td>
                     <td><?php echo $usuario['fecha_registro']; ?></td>
                     <td>
-                        <button class="btn btn-warning btn-sm" 
-                            data-bs-toggle="modal" 
-                            data-bs-target="#editModal" 
-                            data-id="<?php echo $usuario['id']; ?>" 
-                            data-nombre="<?php echo htmlspecialchars($usuario['nombre'], ENT_QUOTES, 'UTF-8'); ?>">
-                            Editar
-                        </button>
-                        <button class="btn btn-danger btn-sm eliminar" data-id="<?php echo $usuario['id']; ?>">Eliminar</button>
+                        <?php if ($usuario['tipo_usuario'] === 'empleado') : ?>
+                            <button class="btn btn-warning btn-sm"
+                                data-bs-toggle="modal"
+                                data-bs-target="#editModal"
+                                data-id="<?php echo $usuario['id']; ?>"
+                                data-nombre="<?php echo htmlspecialchars($usuario['nombre'], ENT_QUOTES, 'UTF-8'); ?>">
+                                Editar
+                            </button>
+                            <button class="btn btn-danger btn-sm eliminar" data-id="<?php echo $usuario['id']; ?>">Eliminar</button>
+                        <?php elseif ($usuario['tipo_usuario'] === 'administrador') : ?>
+                            <button class="btn btn-warning btn-sm"
+                                data-bs-toggle="modal"
+                                data-bs-target="#editModal"
+                                data-id="<?php echo $usuario['id']; ?>"
+                                data-nombre="<?php echo htmlspecialchars($usuario['nombre'], ENT_QUOTES, 'UTF-8'); ?>">
+                                Editar
+                            </button>
+                        <?php endif; ?>
                     </td>
                 </tr>
-            <?php endforeach;?>
+            <?php endforeach; ?>
+
         </tbody>
     </table>
 
     <!-- Botón para abrir el modal de agregar usuario, centrado -->
     <div class="text-center mt-3">
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal">Agregar Usuario</button>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal">Agregar Empleado</button>
     </div>
 </div>
-
-

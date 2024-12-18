@@ -12,9 +12,9 @@
         <li class="nav-item">
           <a class="nav-link" href="catalogo.php">Catalogo</a>
         </li>
-        <li class="nav-item">
+       <!-- <li class="nav-item">
           <a class="nav-link" href="#">Contacto</a>
-        </li>
+        </li>-->
         <li class="nav-item">
           <a class="nav-link" href="registrarse.php">Registrarse</a>
         </li>

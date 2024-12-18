@@ -107,6 +107,7 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo_usuario'] != 'administrad
     <?php
     include './home_section/modals/modal_editUser.html';
     include './home_section/modals/modal_addUser.html';
+    include './home_section/modals/modal_CaddUser.html';
 
     ?>
 
@@ -138,7 +139,6 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo_usuario'] != 'administrad
     <script src="./home_section/js/editUser.js"></script>
     <!-- Al final del archivo antes de cerrar el </body> -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
     <script src="./home_section/js/removeUser.js"></script>
 </body>
 

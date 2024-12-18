@@ -3,11 +3,11 @@ var editModal = document.getElementById('editModal');
 editModal.addEventListener('show.bs.modal', function (event) {
     var button = event.relatedTarget; 
     var userId = button.getAttribute('data-id'); 
-    var userName = button.getAttribute('data-nombre'); 
+    /*var userName = button.getAttribute('data-nombre'); */
 
     
     document.getElementById('editUserId').value = userId;
-    document.getElementById('editUserName').value = userName;
+    /*document.getElementById('editUserName').value = userName;*/
 });
 
 
@@ -19,26 +19,21 @@ $('#editModal').on('hidden.bs.modal', function () {
 $('#editForm').submit(function(e) {
     e.preventDefault();
     var userId = $('#editUserId').val();
-    var userName = $('#editUserName').val();
-
+    var password = $('#password').val();
+    var passwordC = $('#passwordC').val();
+    if(password==passwordC){
     $.ajax({
         url: './home_section/scripts/editUser.php',
         type: 'POST',
-        data: { id: userId, nombre: userName },
+        data: { id: userId, password: password },
         success: function(response) {
             if (response.trim() === 'success') {
-                
-                $('#usuario-' + userId + ' .nombre').text(userName);
-
-                
-                $('button[data-id="' + userId + '"]').attr('data-nombre', userName);
-
-                
+                                               
                 var modal = bootstrap.Modal.getInstance(editModal);
                 modal.hide();
 
                 
-                $('#alerta2').removeClass('d-none alert-danger').addClass('alert-success').text('Usuario actualizado correctamente.');
+                $('#alerta2').removeClass('d-none alert-danger').addClass('alert-success').text('Se ha cambiado la contrasena correctamente.');
             } else {
                 
                 $('#alerta2').removeClass('d-none alert-success').addClass('alert-danger').text('Error al actualizar usuario.');
@@ -49,4 +44,7 @@ $('#editForm').submit(function(e) {
             $('#alerta2').removeClass('d-none alert-success').addClass('alert-danger').text('Error de conexión.');
         }
     });
+    }else{
+        $('#alertaE').removeClass('d-none alert-success').addClass('alert-danger').text('Las contrsenas no coinciden.').show();
+    }
 });

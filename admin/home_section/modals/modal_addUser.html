@@ -2,9 +2,10 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="addUserModalLabel">Agregar Nuevo Usuario</h5>
+          <h5 class="modal-title" id="addUserModalLabel">Agregar Nuevo Empleado</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <div id="alerta" class="alert alert-danger" style="display:none;" role="alert"></div>
         <div class="modal-body">
           <form id="formAddUser">
             <div class="mb-3">
@@ -17,14 +18,16 @@
             </div>
             <div class="mb-3">
               <label for="password" class="form-label">Contraseña</label>
-              <input type="password" class="form-control" id="password" name="password" required>
+              <input type="password" class="form-control" id="password" name="password" required minlength="6">
+            </div>
+            <div class="mb-3">
+              <label for="passwordC" class="form-label">Confirmar Contraseña</label>
+              <input type="password" class="form-control" id="passwordC" name="passwordC" required minlength="6">
             </div>
             <div class="mb-3">
               <label for="tipo_usuario" class="form-label">Tipo de Usuario</label>
-              <select id="tipo_usuario" name="tipo_usuario" class="form-select" required>
-                <option value="administrador">Administrador</option>
-                <option value="empleado">Empleado</option>
-                <option value="cliente">Cliente</option>
+              <select id="tipo_usuario" name="tipo_usuario" class="form-select" required>                
+                <option value="empleado">Empleado</option>                
               </select>
             </div>
             <button type="submit" class="btn btn-primary">Agregar Usuario</button>

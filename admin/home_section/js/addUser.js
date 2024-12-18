@@ -1,9 +1,19 @@
+const modalConfirmation = new bootstrap.Modal(document.getElementById('cmodalCaddUser'));
 $('#formAddUser').submit(function(e) {
     e.preventDefault(); 
 
     var formData = $(this).serialize(); 
-
-    $.ajax({
+    if($('#password').val()==$('#passwordC').val()){
+        $.ajax({
+            type: 'POST',
+            url: '../util/verificarCorreoExiste.php',
+            data: { email: $('#email').val() },
+            dataType: 'json',
+            success: function (response) {
+              if (response.success) {
+                $('#alerta').removeClass('alert-danger').addClass('alert-success').text(response.message).show();
+                modalConfirmation.show();
+                $.ajax({
         url: './home_section/scripts/addUser.php',  
         type: 'POST',
         data: formData,
@@ -43,7 +53,21 @@ $('#formAddUser').submit(function(e) {
             }
         },
         error: function(xhr, status, error) {
-            $('#alerta2').removeClass('d-none alert-success').addClass('alert-danger').text('Error de conexión.');
+                $('#alerta').removeClass('alert-success').addClass('alert-danger').text('Error de conexión.').show();
         }
-    });
+                });
+            } else {
+                $('#alerta').removeClass('alert-success').addClass('alert-danger').text(response.message).show();            
+              }
+            },
+            error: function (xhr, status, error) {
+    
+              console.error("Error del servidor:", xhr.responseText);
+              $('#alerta').text('Ocurrió un error en el servidor: ' + xhr.responseText).show();
+            }
+          });
+    }
+    else{
+        $('#alerta').removeClass('alert-success').addClass('alert-danger').text('Las contrasenas no coinciden').show();
+    }
 });
