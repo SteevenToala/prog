@@ -25,6 +25,11 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="rents.php">
+                        <i class="fas fa-chart-line me-1"></i> Alquileres
+                    </a>
+                </li>
+                <!--<li class="nav-item">
                     <a class="nav-link" href="reports.php">
                         <i class="fas fa-chart-line me-1"></i> Reportes
                     </a>
@@ -33,7 +38,7 @@
                     <a class="nav-link" href="gestion_rates.php">
                         <i class="fas fa-tags me-1"></i> Gestión de Tarifas
                     </a>
-                </li>
+                </li>-->
                 <li class="nav-item">
                     <a class="nav-link text-danger" href="../util/logout.php">
                         <i class="fas fa-sign-out-alt me-1"></i> Cerrar Sesión

@@ -4,13 +4,13 @@ include '../../../util/conexion.php';
 $id_vehiculo = intval($_POST['matricula_vehiculo']);
 $id_usuario = intval($_POST['nombre_usuario']);
 $fecha_inicio = date('Y-m-d');
-
+$fecha_fin=$_POST['fecha_fin_1'];
 
 $conn->begin_transaction();
 
 try {    
-    $sql = $conn->prepare("INSERT INTO alquileres(vehiculo_id, usuario_id, fecha_inicio) VALUES (?, ?, ?)");
-    $sql->bind_param("iis", $id_vehiculo, $id_usuario, $fecha_inicio);
+    $sql = $conn->prepare("INSERT INTO alquileres(vehiculo_id, usuario_id, fecha_inicio,fecha_fin) VALUES (?, ? , ?, ?)");
+    $sql->bind_param("iiss", $id_vehiculo, $id_usuario, $fecha_inicio,$fecha_fin);
 
     if ($sql->execute()) {
         $id_alquiler = $sql->insert_id;
@@ -20,7 +20,7 @@ try {
 
         if ($update_sql->execute()) {
             
-            $vehicle_sql = $conn->prepare("SELECT marca, modelo, matricula FROM vehiculos WHERE id=?");
+            $vehicle_sql = $conn->prepare("SELECT marca, modelo, matricula,imagen FROM vehiculos WHERE id=?");
             $vehicle_sql->bind_param("i", $id_vehiculo);
             $vehicle_sql->execute();
             $result_vehicle = $vehicle_sql->get_result();
@@ -29,13 +29,15 @@ try {
                 $dataVehicles[]=array(
                     'marca'=>$row['marca'],
                     'matricula'=>$row['matricula'],
-                    'modelo'=>$row['modelo']
+                    'modelo'=>$row['modelo'],
+                    'imagen'=>$row['imagen']
                 );               
             }     
             foreach($dataVehicles as $vehicle){
                 $marca = $vehicle['marca'];
                 $modelo = $vehicle['modelo'];
                 $matricula = $vehicle['matricula'];
+                $imagen = $vehicle['imagen'];
             }     
             
             $usuario_sql = $conn->prepare("SELECT nombre FROM usuarios WHERE id=?");
@@ -55,10 +57,12 @@ try {
                         'success' => true,
                         'id' => $id_alquiler,
                         'fecha_inicio' => $fecha_inicio,
+                        'fecha_fin' => $fecha_fin,
                         'id_usuario' => $id_usuario,
                         'marca' => $marca,
                         'modelo' => $modelo,
                         'matricula' => $matricula,
+                        'imagen' => $imagen,
                         'nombre' => $user['nombre'],
                         'id_vehiculo' => $id_vehiculo
                     ]);

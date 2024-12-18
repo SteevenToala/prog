@@ -67,5 +67,25 @@ CREATE TABLE alquileres (
 );
 
 
+monto_tarifa DECIMAL(10, 2),
+descripcion_devolucion VARCHAR(255),
+fecha_devolucion VARCHAR(50),
+devuelto ENUM('si', 'no'),
+cargos_extra DECIMAL(10, 2),
+monto_total DECIMAL(10, 2), 
+
+
+
+ALTER TABLE alquileres
+ADD COLUMN monto_tarifa DECIMAL(10, 2),                 -- Tarifa base del alquiler
+ADD COLUMN descripcion_devolucion VARCHAR(255),                 -- Descripción al devolver el vehículo
+ADD COLUMN fecha_devolucion VARCHAR(50),                        -- Fecha en que se devolvió el vehículo
+ADD COLUMN devuelto ENUM('si', 'no') DEFAULT 'no',              -- Indica si el vehículo fue devuelto
+ADD COLUMN cargos_extra DECIMAL(10, 2) DEFAULT 0.00,            -- Cargos adicionales aplicados
+ADD COLUMN monto_total DECIMAL(10, 2);                          -- Monto total del alquiler (tarifa + cargos extra)
+
+
+
+
 
 INSERT INTO alquileres (vehiculo_id,usuario_id,fecha_inicio,fecha_fin,estado) VALUES (1,20,'2024-11-02','2024-11-03','Activo');

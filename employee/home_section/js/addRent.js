@@ -15,19 +15,28 @@ $('#formAddRent').submit(function (e) {
                 modal.hide();
 
                 var nuevaFila = `<tr>
-                    <td class="nombre">${data.fecha_inicio}</td>
-                    <td></td>
-                    <td>Activo</td>                                                            
-                    <td>${data.nombre}</td>  
-                    <td>${data.matricula}</td>
-                    <td>${data.marca}</td>                    
-                    <td>${data.modelo}</td>
+                    <th>
+                        <img src="../images/autos/${data.imagen}" alt=""
+                        style="width: 100px; height: auto; border-radius: 5px;">
+                    
+                    </th>
+                    <th>${data.matricula}</th>                    
+                    <th>${data.marca}</th>
+                    <th>${data.modelo}</th>                    
+                    <th>${data.fecha_inicio}</th>
+                    <th>${data.fecha_fin}</th>
+                    <th>Activo</td>                                                            
+                    <th>${data.nombre}</th>  
+                    
+                                        
+                    
                     <th>
                                     <button class="btn btn-warning btn-sm"
                                         data-bs-toggle="modal"
                                         data-bs-target="#contratoModal"
                                         data-id="${data.id}"
                                         data-fechaInicio="${data.fecha_inicio}"
+                                        data-fechaInicio="${data.fecha_fin}"
                                         data-nombreUsuario="${data.nombre}"
                                         data-matricula="${data.matricula}">
                                         Ver Contrato
@@ -39,6 +48,7 @@ $('#formAddRent').submit(function (e) {
                                     data-bs-target="#editModalRent"
                                     data-id="${data.id}"
                                     data-fechaInicio="${data.fecha_inicio}"
+                                    data-fechaInicio="${data.fecha_fin}"
                                     data-nombreUsuario="${data.nombre}"
                                     data-matricula="${data.matricula}">
                                     Editar
