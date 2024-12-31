@@ -61,6 +61,7 @@ if ($result->num_rows > 0) {
     include './home_section/modals/contrato.html';
     include './home_section/modals/modal_addRent.php';
     include './home_section/modals/modal_editRent.php';
+    include './home_section/modals/modal_EditarFechaF.html';
 
     ?>
 
@@ -84,6 +85,7 @@ if ($result->num_rows > 0) {
                         <th>Cliente</th>                        
                         <th>Contrato</th>
                         <th>Acciones</th>
+                        <th></th>
                         <th></th>
                     </thead>
                     <tbody id="tablaRents">
@@ -131,6 +133,21 @@ if ($result->num_rows > 0) {
                                         Editar
                                     </button>
                                 </th>
+                                <th>
+                                    <button class="btn btn-warning btn-sm editar"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#editFechaF"
+                                        data-id="<?php echo $rent['id']; ?>"
+                                        data-fechaInicio="<?php echo $rent['fecha_inicio']; ?>"
+                                        data-fechaInicio="<?php echo $rent['fecha_fin']; ?>"
+                                        data-nombreUsuario="<?php echo $rent['nombre_usuario']; ?>"
+                                        data-vehiculoid="<?php echo htmlspecialchars($rent['vehiculo_id'], ENT_QUOTES, 'UTF-8'); ?>"
+                                        data-matricula="<?php echo htmlspecialchars($rent['matricula'], ENT_QUOTES, 'UTF-8'); ?>"
+                                        data-marca="<?php echo htmlspecialchars($rent['marca'], ENT_QUOTES, 'UTF-8'); ?>"
+                                        data-modelo="<?php echo htmlspecialchars($rent['modelo'], ENT_QUOTES, 'UTF-8'); ?>">
+                                        Editar fecha fin
+                                    </button>
+                                </th>
                                 <th><button class="btn btn-danger btn-sm eliminar" data-id="<?php echo $rent['id']; ?>">Eliminar</button></th>
                             </tr>
                         <?php endforeach; ?>
@@ -151,6 +168,7 @@ if ($result->num_rows > 0) {
     <script src="./home_section/js/editRent.js"></script>
     <script src="./home_section/js/removeRent.js"></script>
     <script src="./home_section/js/contrato.js"></script>
+    <script src="./home_section/js/editFechaFin.js"></script>
     <script>
  document.addEventListener("DOMContentLoaded", function () {
   const camposFecha = document.querySelectorAll(".fecha_fin");

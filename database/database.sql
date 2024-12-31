@@ -74,6 +74,9 @@ devuelto ENUM('si', 'no'),
 cargos_extra DECIMAL(10, 2),
 monto_total DECIMAL(10, 2), 
 
+ALTER TABLE alquileres
+ADD COLUMN metodo_pago ENUM('tarjeta', 'efectivo') DEFAULT 'efectivo';
+
 
 
 ALTER TABLE alquileres

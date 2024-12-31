@@ -1,6 +1,6 @@
 var editModalRent = document.getElementById('editModalRent');
 
-// Evento al mostrar el modal
+
 editModalRent.addEventListener('show.bs.modal', function (event) {
     var button = event.relatedTarget;
     var alquilerId = button.getAttribute('data-id');
@@ -8,21 +8,22 @@ editModalRent.addEventListener('show.bs.modal', function (event) {
     var cargosExtra = button.getAttribute('data-cargosExtra');
     var descripcionDevolucion = button.getAttribute('data-descripcionDevolucion');
     var devuelto = button.getAttribute('data-devuelto');
+    var metodoP = button.getAttribute('data-metodo');
 
-    // Asignar los valores al formulario
+    
     document.getElementById('editRentID').value = alquilerId;
     document.getElementById('fecha_devolucion').value = fecha_D;
     document.getElementById('cargos_extra').value = cargosExtra;
     document.getElementById('descripcion_devolucion').value = descripcionDevolucion;
     document.getElementById('devuelto').value = devuelto;
+    document.getElementById('metodo_pago').value = metodoP;
 });
 
-// Restablecer el formulario al cerrar el modal
+
 $('#editModalRent').on('hidden.bs.modal', function () {
     $('#formeEditDev')[0].reset();
 });
 
-// Manejo del envío del formulario
 $('#formeEditDev').submit(function (e) {
     e.preventDefault();
 
@@ -31,8 +32,9 @@ $('#formeEditDev').submit(function (e) {
     var fecha_devolucion = $('#fecha_devolucion').val();
     var devuelto = $('#devuelto').val();
     var cargos_extra = $('#cargos_extra').val();
-
-    // Enviar la solicitud AJAX
+    var metodo_pago = $('#metodo_pago').val();
+    console.log(metodo_pago+"m")
+    
     $.ajax({
         url: './home_section/scripts/editDev.php',
         type: 'POST',
@@ -42,6 +44,7 @@ $('#formeEditDev').submit(function (e) {
             descripcion_devolucion: descripcion_devolucion,
             fecha_devolucion: fecha_devolucion,
             devuelto: devuelto,
+            metodo_pago:metodo_pago,
             cargos_extra: cargos_extra
         },
         success: function (response) {
@@ -51,12 +54,16 @@ $('#formeEditDev').submit(function (e) {
                 $('#rent-' + editRentID + ' .cargos').text(cargos_extra);
                 $('#rent-' + editRentID + ' .descripcion').text(descripcion_devolucion);
                 $('#rent-' + editRentID + ' .devuelto').text(devuelto);
-
-                // Mostrar mensaje de éxito
+                $('#rent-' + editRentID + ' .metodo').text(metodo_pago);
+                $('#rent-' + editRentID + ' .monto').text(response.monto_tarifa);
+                $('#rent-' + editRentID + ' .montoT').text(response.monto_total);
+                var modal = bootstrap.Modal.getInstance(editModalRent);
+                modal.hide();
+                // Mostrar mensaje de éxito                
                 $('#alerta2')
                     .removeClass('d-none alert-danger')
                     .addClass('alert-success')
-                    .text(response.message);
+                    .text('Se actualizo correctamente:'+response.message);
             } else {
                 // Mostrar mensaje de error
                 $('#alerta2')

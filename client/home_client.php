@@ -10,7 +10,7 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo_usuario'] != 'cliente') {
 include '../util/conexion.php';
 
 // Consultar valores únicos para los filtros
-$sqlMarcas = "SELECT DISTINCT marca FROM vehiculos";
+$sqlMarcas = "SELECT DISTINCT marca FROM vehiculos WHERE disponibilidad = 'Disponible'";
 $sqlCombustible = "SELECT DISTINCT tipo_combustible FROM vehiculos";
 $sqlVehiculos = "SELECT id, marca, modelo, matricula, disponibilidad, tarifa, estado, color, imagen, tipo_combustible, tipo_vehiculo, tipo_transmision 
                  FROM vehiculos 
@@ -196,39 +196,49 @@ if ($resultVehiculos->num_rows > 0) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         const form = document.getElementById('filterForm');
-        const vehicleCards = document.querySelectorAll('.vehicle-card');
+const vehicleCards = document.querySelectorAll('.vehicle-card');
 
-        form.addEventListener('input', () => {
-            const marca = document.getElementById('filterMarca').value.toLowerCase();
-            const precio = document.getElementById('filterPrecio').value;
-            const combustible = document.getElementById('filterCombustible').value.toLowerCase();
-            const tipoVehiculo = document.getElementById('filterTipoVehiculo').value.toLowerCase();
-            const transmision = document.getElementById('filterTransmision').value.toLowerCase();
+// Lógica de filtrado
+const applyFilters = () => {
+    const marca = document.getElementById('filterMarca').value.toLowerCase();
+    const precio = document.getElementById('filterPrecio').value;
+    const combustible = document.getElementById('filterCombustible').value.toLowerCase();
+    const tipoVehiculo = document.getElementById('filterTipoVehiculo').value.toLowerCase();
+    const transmision = document.getElementById('filterTransmision').value.toLowerCase();
 
-            vehicleCards.forEach(card => {
-                const cardMarca = card.getAttribute('data-marca');
-                const cardTarifa = parseFloat(card.getAttribute('data-tarifa'));
-                const cardCombustible = card.getAttribute('data-combustible');
-                const cardTipo = card.getAttribute('data-tipo');
-                const cardTransmision = card.getAttribute('data-transmision');
+    vehicleCards.forEach(card => {
+        const cardMarca = card.getAttribute('data-marca');
+        const cardTarifa = parseFloat(card.getAttribute('data-tarifa'));
+        const cardCombustible = card.getAttribute('data-combustible');
+        const cardTipo = card.getAttribute('data-tipo');
+        const cardTransmision = card.getAttribute('data-transmision');
 
-                let matchesPrecio = true;
-                if (precio) {
-                    const [min, max] = precio.split('-').map(Number);
-                    matchesPrecio = cardTarifa >= min && cardTarifa <= max;
-                }
+        let matchesPrecio = true;
+        if (precio) {
+            const [min, max] = precio.split('-').map(Number);
+            matchesPrecio = cardTarifa >= min && cardTarifa <= max;
+        }
 
-                const matches = (
-                    (marca === '' || cardMarca === marca) &&
-                    matchesPrecio &&
-                    (combustible === '' || cardCombustible === combustible) &&
-                    (tipoVehiculo === '' || cardTipo === tipoVehiculo) &&
-                    (transmision === '' || cardTransmision === transmision)
-                );
+        const matches = (
+            (marca === '' || cardMarca === marca) &&
+            matchesPrecio &&
+            (combustible === '' || cardCombustible === combustible) &&
+            (tipoVehiculo === '' || cardTipo === tipoVehiculo) &&
+            (transmision === '' || cardTransmision === transmision)
+        );
 
-                card.style.display = matches ? '' : 'none';
-            });
-        });
+        card.style.display = matches ? '' : 'none';
+    });
+};
+
+// Evento de entrada para filtros
+form.addEventListener('input', applyFilters);
+
+// Evento para limpiar filtros
+form.addEventListener('reset', () => {
+    setTimeout(applyFilters, 0); // Llamar a applyFilters después de restablecer los valores del formulario
+});
+
     </script>
 </body>
 

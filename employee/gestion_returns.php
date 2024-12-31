@@ -5,7 +5,7 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo_usuario'] != 'empleado') 
     exit();
 }
 include '../util/conexion.php';
-$sql = "SELECT alquileres.id, alquileres.fecha_inicio, alquileres.fecha_fin, alquileres.estado,alquileres.monto_tarifa,alquileres.descripcion_devolucion,alquileres.fecha_devolucion,alquileres.devuelto,alquileres.cargos_extra,alquileres.monto_total, usuarios.nombre AS nombre_usuario, vehiculos.matricula, vehiculos.marca, vehiculos.modelo, vehiculos.imagen
+$sql = "SELECT alquileres.id, alquileres.fecha_inicio, alquileres.fecha_fin, alquileres.estado,alquileres.metodo_pago,alquileres.monto_tarifa,alquileres.descripcion_devolucion,alquileres.fecha_devolucion,alquileres.devuelto,alquileres.cargos_extra,alquileres.monto_total, usuarios.nombre AS nombre_usuario, vehiculos.matricula, vehiculos.marca, vehiculos.modelo, vehiculos.imagen
             FROM alquileres
             JOIN usuarios ON alquileres.usuario_id = usuarios.id
             JOIN vehiculos ON alquileres.vehiculo_id = vehiculos.id";
@@ -29,6 +29,7 @@ if ($result->num_rows > 0) {
             'fecha_devolucion' => $row['fecha_devolucion'],
             'devuelto' => $row['devuelto'],
             'cargos_extra' => $row['cargos_extra'],
+            'metodo_pago' => $row['metodo_pago'],
             'monto_total' => $row['monto_total']
         );
     }
@@ -88,6 +89,7 @@ if ($result->num_rows > 0) {
                         <th>Monto Total</th>
                         <th>Descripcion</th>
                         <th>Devuelto</th>
+                        <th>Metodo de pago</th>
                         <th>Cliente</th>
                         <th>Acciones</th>
                     </thead>
@@ -108,6 +110,7 @@ if ($result->num_rows > 0) {
                                 <th class="montoT"><?php echo $rent['monto_total'] ?></th>
                                 <th class="descripcion"><?php echo $rent['descripcion_devolucion'] ?></th>
                                 <th class="devuelto"><?php echo $rent['devuelto'] ?></th>
+                                <th class="metodo"><?php echo $rent['metodo_pago'] ?></th>
                                 <th class="nombre"><?php echo $rent['nombre_usuario'] ?></th>
                                 <th>
                                     <?php if (!empty($rent['fecha_fin'])): ?>
@@ -118,6 +121,7 @@ if ($result->num_rows > 0) {
                                             data-fechaDevolucion="<?php echo $rent['fecha_devolucion']; ?>"                                            
                                             data-cargosExtra="<?php echo $rent['cargos_extra']; ?>"
                                             data-descripcionDevolucion="<?php echo $rent['descripcion_devolucion']; ?>"
+                                            data-metodo="<?php echo $rent['metodo_pago']; ?>"
                                             data-devuelto="<?php echo $rent['devuelto']; ?>"
                                             data-matricula="<?php echo htmlspecialchars($rent['matricula'], ENT_QUOTES, 'UTF-8'); ?>">
                                             Editar
@@ -137,6 +141,7 @@ if ($result->num_rows > 0) {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./home_section/js/editDev.js"></script>
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const camposFecha = document.querySelectorAll(".fecha_fin");
