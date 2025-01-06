@@ -194,7 +194,105 @@ if ($result->num_rows > 0) {
 });
 
 </script>
-    
+
+
+
+
+<script>
+// Filtrado de vehículos
+document.getElementById('searchVehicle').addEventListener('input', filterVehicles);
+
+function filterVehicles() {
+  const query = document.getElementById('searchVehicle').value.toLowerCase().trim(); // Texto buscado
+  const vehicles = document.querySelectorAll('.vehicle-item'); // Todos los vehículos
+  let visibleVehicles = 0;
+
+  vehicles.forEach(vehicle => {
+    const marca = vehicle.dataset.marca.toLowerCase();
+    const modelo = vehicle.dataset.modelo.toLowerCase();
+    const matricula = vehicle.dataset.matricula.toLowerCase();
+
+    // Mostrar solo los vehículos que coinciden con la búsqueda
+    if (marca.includes(query) || modelo.includes(query) || matricula.includes(query)) {
+      vehicle.style.display = ''; // Mostrar el vehículo
+      visibleVehicles++;
+    } else {
+      vehicle.style.display = 'none'; // Ocultar el vehículo
+    }
+  });
+
+  // Mensaje cuando no hay resultados
+  const listContainer = document.getElementById('vehicleList');
+  const noResultsMessage = document.getElementById('noResultsMessage');
+
+  if (visibleVehicles === 0) {
+    if (!noResultsMessage) {
+      const message = document.createElement('li');
+      message.id = 'noResultsMessage';
+      message.className = 'list-group-item text-center text-muted';
+      message.textContent = 'No se encontraron vehículos';
+      listContainer.appendChild(message);
+    }
+  } else if (noResultsMessage) {
+    noResultsMessage.remove();
+  }
+}
+
+// Selección de vehículo
+function selectVehicle(vehicleId, marca, modelo, matricula) {
+  const matriculaInput = document.getElementById('matricula_vehiculo');
+  const selectedVehicleText = document.getElementById('selectedVehicle');
+  const submitButton = document.getElementById('submitRentButton');
+
+  if (!matriculaInput || !selectedVehicleText || !submitButton) {
+    console.error('No se encontraron elementos del formulario.');
+    return;
+  }
+
+  matriculaInput.value = vehicleId; // Asignar el ID del vehículo
+  selectedVehicleText.textContent = `Vehículo seleccionado: ${marca} - ${modelo} (Matrícula: ${matricula})`;
+  submitButton.disabled = false; // Habilitar el botón de envío
+}
+
+// Buscar vehículos a través de un API
+document.getElementById('searchVehicle').addEventListener('input', function () {
+  const query = this.value.trim();
+
+  fetch(`buscarVehiculos.php?query=${encodeURIComponent(query)}`)
+  .then(response => response.json())
+  .then(data => {
+    const listContainer = document.getElementById('vehicleList');
+    listContainer.innerHTML = ''; // Limpiar la lista existente
+
+    data.forEach(vehicle => {
+      const vehicleItem = document.createElement('li');
+      vehicleItem.className = 'list-group-item d-flex align-items-center vehicle-item';
+      vehicleItem.setAttribute('data-id', vehicle.id || '');
+      vehicleItem.setAttribute('data-marca', (vehicle.marca || '').toLowerCase());
+      vehicleItem.setAttribute('data-modelo', (vehicle.modelo || '').toLowerCase());
+      vehicleItem.setAttribute('data-matricula', (vehicle.matricula || '').toLowerCase());
+      vehicleItem.onclick = () => {
+        if (vehicle.id && vehicle.marca && vehicle.modelo && vehicle.matricula) {
+          selectVehicle(vehicle.id, vehicle.marca, vehicle.modelo, vehicle.matricula);
+        } else {
+          console.error('Datos del vehículo incompletos:', vehicle);
+        }
+      };
+
+      vehicleItem.innerHTML = `
+        <img src="../images/autos/${vehicle.imagen || 'placeholder.jpg'}" alt="Imagen de ${vehicle.marca || 'N/A'}" class="me-3" style="width: 50px; height: 50px; object-fit: cover;">
+        <div>
+          <strong>${vehicle.marca || 'Sin Marca'} - ${vehicle.modelo || 'Sin Modelo'}</strong><br>
+          <small>Matrícula: ${vehicle.matricula || 'Sin Matrícula'}</small>
+        </div>
+      `;
+
+      listContainer.appendChild(vehicleItem);
+    });
+  })
+  .catch(error => console.error('Error fetching vehicles:', error));
+});
+</script>
 
 
 

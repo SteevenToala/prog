@@ -16,9 +16,14 @@ $('#editModalRent').on('hidden.bs.modal', function () {
 $('#formEditRent').submit(function(e) {
     e.preventDefault(); 
 
-    var id_vehiculo = $('#matricula_vehiculoE').val();    
-    var id_usuario = $('#nombre_usuarioE').val();   
-    var id_alquiler =  $('#editRentID').val();   
+    let id_vehiculo = $('#matricula_vehiculoE').val();    
+    let id_usuario = $('#nombre_usuarioE').val();   
+    let id_alquiler =  $('#editRentID').val();   
+    console.log(id_vehiculo);
+    console.log(id_usuario);
+    console.log(id_alquiler);
+
+    
 
     $.ajax({
         url: './home_section/scripts/editRent.php',
@@ -34,7 +39,6 @@ $('#formEditRent').submit(function(e) {
                 $('#rent-' + id_alquiler + ' .marca').text(response.vehiculo_actual.marca);
                 $('#rent-' + id_alquiler + ' .modelo').text(response.vehiculo_actual.modelo);
                 $('#rent-' + id_alquiler + ' .matricula').text(response.vehiculo_actual.matricula);
-                
                 
                 var optionEliminarE = document.getElementById('eV'+response.vehiculo_actual.id);
                 var optionEliminarA = document.getElementById('aV'+response.vehiculo_actual.id);
@@ -65,12 +69,13 @@ $('#formEditRent').submit(function(e) {
                     'data-matricula': response.vehiculo_actual.matricula,                   
                 });
 
-
-                
                 var modal = bootstrap.Modal.getInstance(editModalRent);
                 modal.hide();
                 
                 $('#alerta2').removeClass('d-none alert-danger').addClass('alert-success').text(response.message);
+
+                // Recargar la página
+                location.reload(); // Esto recargará la página
             } else {                
                 $('#alerta2').removeClass('d-none alert-success').addClass('alert-danger').text(response.message);
             }
@@ -80,14 +85,3 @@ $('#formEditRent').submit(function(e) {
         }
     });
 });
-
-
-
-function addOptionalEmilimar(idSelect, option) {
-    var select = document.getElementById(idSelect);
-    if (!select) {
-        console.error(`No se encontró el elemento <select> con id "${idSelect}".`);
-        return;
-    }    
-    select.appendChild(option); // Ahora 'option' es un nodo DOM válido
-}

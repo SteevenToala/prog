@@ -1,6 +1,7 @@
 <?php
 include '../util/conexion.php';
-$sql = "SELECT nombre,id FROM usuarios";
+
+$sql = "SELECT nombre, id FROM usuarios";
 $result = mysqli_query($conn, $sql);
 
 $dataUsers = array();
@@ -15,26 +16,25 @@ if ($result->num_rows > 0) {
   echo "no existen elementos";
 }
 
-
-$sqlv = "SELECT marca,modelo,matricula, id FROM vehiculos WHERE disponibilidad = 'Disponible'";
+$sqlv = "SELECT marca, modelo, matricula, imagen, id FROM vehiculos WHERE disponibilidad = 'Disponible'";
 $resultv = mysqli_query($conn, $sqlv);
 
 $datavehicles = array();
 if ($resultv->num_rows > 0) {
   while ($row = mysqli_fetch_array($resultv)) {
     $datavehicles[] = array(
-      'marca' => $row['marca'],
-      'matricula' => $row['matricula'],
-      'modelo' => $row['modelo'],
-      'id' => $row['id']
+      'marca' => $row['marca'] ?? 'Sin Marca',
+      'modelo' => $row['modelo'] ?? 'Sin Modelo',
+      'matricula' => $row['matricula'] ?? 'Sin Matrícula',
+      'id' => $row['id'],
+      'imagen' => $row['imagen'] ?? 'placeholder.jpg'
     );
   }
 } else {
   echo "";
 }
-
-
 ?>
+
 <div class="modal fade" id="addRentModal" tabindex="-1" aria-labelledby="addRentModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -42,24 +42,12 @@ if ($resultv->num_rows > 0) {
         <h5 class="modal-title" id="addRentModalLabel">Agregar Nuevo Alquiler</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        <form id="formAddRent">
-          <!--<div class="mb-3">
-              <label for="fecha_fin" class="form-label">Fecha Fin</label>
-              <input type="date" class="form-control" id="fecha_fin" name="fecha_fin" required>
-            </div>-->
-            <div class="mb-3">
-  <label for="fecha_fin_1" class="form-label">Fecha Fin</label>
-  <input type="date" class="form-control fecha_fin" id="fecha_fin_1" name="fecha_fin_1" required>
-</div>
-
+      <div class="modal-body d-flex">
+        <!-- Formulario principal -->
+        <form id="formAddRent" class="w-50">
           <div class="mb-3">
-            <label for="matricula_vehiculo" class="form-label">Vehiculos disponibles(marca-modelo-matricula)</label>
-            <select class="form-select" id="matricula_vehiculo" name="matricula_vehiculo" required>
-              <?php foreach ($datavehicles as $vehicle): ?>
-                <option id="aV<?php echo $vehicle['id']; ?>" value="<?php echo $vehicle['id']; ?>"><?php echo $vehicle['marca']; ?> - <?php echo $vehicle['modelo']; ?> - <?php echo $vehicle['matricula']; ?></option>
-              <?php endforeach; ?>
-            </select>
+            <label for="fecha_fin_1" class="form-label">Fecha Fin</label>
+            <input type="date" class="form-control fecha_fin" id="fecha_fin_1" name="fecha_fin_1" required>
           </div>
           <div class="mb-3">
             <label for="nombre_usuario" class="form-label">Nombre Usuario</label>
@@ -69,9 +57,37 @@ if ($resultv->num_rows > 0) {
               <?php endforeach; ?>
             </select>
           </div>
-          <button type="submit" class="btn btn-primary">Agregar Alquiler</button>
+          <input type="hidden" id="matricula_vehiculo" name="matricula_vehiculo" required>
+          <p id="selectedVehicle" class="text-success"></p>
+          <button type="submit" class="btn btn-primary" id="submitRentButton" disabled>Agregar Alquiler</button>
         </form>
+        <!-- Lista de vehículos con búsqueda y selección -->
+        <div class="w-50 ms-3">
+          <label for="searchVehicle" class="form-label">Buscar Vehículo</label>
+          <div class="input-group mb-3">
+            <input type="text" id="searchVehicle" class="form-control" placeholder="Buscar por matrícula, marca o modelo">
+            <!--<button class="btn btn-outline-secondary" id="searchButton" type="button">Buscar</button>-->
+          </div>
+          <ul id="vehicleList" class="list-group overflow-auto" style="max-height: 300px;">
+            <?php foreach ($datavehicles as $vehicle): ?>
+              <li class="list-group-item d-flex align-items-center vehicle-item" 
+                  data-id="<?php echo $vehicle['id']; ?>" 
+                  data-marca="<?php echo strtolower($vehicle['marca']); ?>" 
+                  data-modelo="<?php echo strtolower($vehicle['modelo']); ?>" 
+                  data-matricula="<?php echo strtolower($vehicle['matricula']); ?>" 
+                  onclick="selectVehicle('<?php echo $vehicle['id']; ?>', '<?php echo $vehicle['marca']; ?>', '<?php echo $vehicle['modelo']; ?>', '<?php echo $vehicle['matricula']; ?>')">
+                <img src="../images/autos/<?php echo $vehicle['imagen']; ?>" alt="Imagen de <?php echo $vehicle['marca']; ?>" class="me-3" style="width: 50px; height: 50px; object-fit: cover;">
+                <div>
+                  <strong><?php echo $vehicle['marca']; ?> - <?php echo $vehicle['modelo']; ?></strong><br>
+                  <small>Matrícula: <?php echo $vehicle['matricula']; ?></small>
+                </div>
+              </li>
+            <?php endforeach; ?>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+

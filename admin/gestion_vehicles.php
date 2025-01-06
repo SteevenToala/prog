@@ -137,6 +137,142 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo_usuario'] != 'administrad
     <script src="./home_section/js/addVehicle.js"></script>
     <script src="./home_section/js/editVehicle.js"></script>
     <script src="./home_section/js/removeVehicle.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const modelosPorMarca = {
+        Toyota: ["Corolla", "Camry", "RAV4", "Hilux", "Land Cruiser", "Yaris", "Fortuner", "Supra"],
+        Nissan: ["Sentra", "Altima", "Navara", "X-Trail", "Versa", "Patrol", "Kicks", "Leaf"],
+        Ford: ["Fiesta", "Focus", "Explorer", "Ranger", "Escape", "Edge", "Bronco", "Mustang"],
+        Chevrolet: ["Spark", "Cruze", "Trailblazer", "Silverado", "Equinox", "Suburban", "Malibu", "Traverse"],
+        Honda: ["Civic", "Accord", "CR-V", "Pilot", "Fit", "Odyssey", "HR-V", "Passport"],
+        BMW: ["Serie 3", "Serie 5", "X1", "X3", "X5", "Serie 7", "M3", "Z4"],
+        Mercedes_Benz: ["Clase A", "Clase C", "Clase E", "GLE", "GLC", "GLA", "S-Class", "AMG GT"],
+        Audi: ["A3", "A4", "A6", "Q3", "Q5", "Q7", "R8", "e-tron"],
+        Hyundai: ["Elantra", "Tucson", "Santa Fe", "Kona", "Sonata", "Accent", "Venue", "Ioniq"],
+        Kia: ["Rio", "Sportage", "Sorento", "Seltos", "Telluride", "Forte", "Stinger", "Niro"],
+        Volkswagen: ["Jetta", "Passat", "Tiguan", "Polo", "Golf", "Atlas", "Arteon", "Beetle"],
+        Mazda: ["Mazda 3", "Mazda 6", "CX-3", "CX-5", "CX-9", "MX-5", "BT-50", "RX-8"],
+        Subaru: ["Impreza", "Forester", "Outback", "WRX", "Legacy", "Ascent", "BRZ", "Crosstrek"],
+        Tesla: ["Model S", "Model 3", "Model X", "Model Y", "Cybertruck", "Roadster"],
+        Jeep: ["Wrangler", "Cherokee", "Grand Cherokee", "Compass", "Renegade", "Gladiator"],
+        Mitsubishi: ["Lancer", "Outlander", "Pajero", "Eclipse Cross", "Mirage", "Montero Sport"],
+        Land_Rover: ["Defender", "Discovery", "Range Rover Evoque", "Range Rover Sport", "Range Rover Velar"],
+        Volvo: ["XC40", "XC60", "XC90", "S60", "S90", "V60", "V90"],
+        Suzuki: ["Swift", "Vitara", "Jimny", "Celerio", "Baleno", "Ignis", "S-Cross"],
+        Peugeot: ["208", "2008", "3008", "5008", "308", "508", "Rifter", "Traveller"],
+        Renault: ["Clio", "Duster", "Captur", "Koleos", "Sandero", "Logan", "Megane", "Talisman"],
+        Fiat: ["500", "Panda", "Tipo", "Toro", "Ducato", "Argo", "Strada", "Cronos"]
+    };
+
+    const marcaSelect = document.getElementById('marca');
+    const modeloSelect = document.getElementById('modelo');
+
+    // Agregar marcas al selector
+    for (const marca in modelosPorMarca) {
+        const option = document.createElement('option');
+        option.value = marca;
+        option.textContent = marca.replace("_", " "); // Reemplaza guiones bajos por espacios
+        marcaSelect.appendChild(option);
+    }
+
+    // Escuchar el cambio en el selector de marcas
+    marcaSelect.addEventListener('change', () => {
+        const marcaSeleccionada = marcaSelect.value;
+
+        // Limpiar los modelos existentes
+        modeloSelect.innerHTML = '<option value="" disabled selected>Seleccione un modelo</option>';
+
+        // Agregar los modelos correspondientes a la marca seleccionada
+        if (modelosPorMarca[marcaSeleccionada]) {
+            modelosPorMarca[marcaSeleccionada].forEach(modelo => {
+                const option = document.createElement('option');
+                option.value = modelo;
+                option.textContent = modelo;
+                modeloSelect.appendChild(option);
+            });
+        }
+    });
+});
+
+    </script>
+   
+
+<script>
+    document.getElementById('imagen').addEventListener('change', function(event) {
+        const input = event.target;
+        const preview = document.getElementById('previewImagen');
+
+        // Verifica que se haya seleccionado un archivo
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+
+            // Carga la imagen en el elemento <img>
+            reader.onload = function(e) {
+                preview.src = e.target.result; // Asigna la imagen cargada
+                preview.classList.remove('d-none'); // Muestra la imagen
+            };
+
+            // Lee el archivo seleccionado
+            reader.readAsDataURL(input.files[0]);
+        } else {
+            preview.src = ''; // Limpia la imagen si no hay selección
+            preview.classList.add('d-none'); // Oculta la imagen
+        }
+    });
+</script>
+
+
+<script>
+    document.getElementById('matricula').addEventListener('input', function (e) {
+        let value = e.target.value.toUpperCase(); // Convertir todo a mayúsculas
+
+        // Filtrar las letras y los números por separado
+        let letters = value.replace(/[^A-Z]/g, ''); // Solo letras A-Z
+        let numbers = value.replace(/[^0-9]/g, ''); // Solo números 0-9
+
+        // Limitar a 3 letras antes del guion
+        letters = letters.slice(0, 3);
+
+        // Limitar a 3 números después del guion
+        numbers = numbers.slice(0, 3);
+
+        // Combinar las letras y los números con el guion si es necesario
+        if (letters.length === 3 && numbers.length === 0) {
+            value = letters + '-';
+        } else {
+            value = letters + (numbers ? '-' + numbers : ''); // Si hay números, se agrega el guion
+        }
+
+        // Actualizar el valor del input
+        e.target.value = value;
+    });
+</script>
+<script>
+    document.getElementById('editMatricula').addEventListener('input', function (e) {
+        let value = e.target.value.toUpperCase(); // Convertir todo a mayúsculas
+
+        // Filtrar las letras y los números por separado
+        let letters = value.replace(/[^A-Z]/g, ''); // Solo letras A-Z
+        let numbers = value.replace(/[^0-9]/g, ''); // Solo números 0-9
+
+        // Limitar a 3 letras antes del guion
+        letters = letters.slice(0, 3);
+
+        // Limitar a 3 números después del guion
+        numbers = numbers.slice(0, 3);
+
+        // Combinar las letras y los números con el guion si es necesario
+        if (letters.length === 3 && numbers.length === 0) {
+            value = letters + '-';
+        } else {
+            value = letters + (numbers ? '-' + numbers : ''); // Si hay números, se agrega el guion
+        }
+
+        // Actualizar el valor del input
+        e.target.value = value;
+    });
+</script>
+
 </body>
 
 </html>
