@@ -11,7 +11,13 @@
         </li>     
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="vehiculos_alquilados.php">Vehiculos Alquilados</a>
-        </li>              
+        </li> 
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="my_reservations.php">Mis reservas</a>
+        </li> 
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="my_rents.php">Mis alquileres</a>
+        </li>                   
         <li class="nav-item" style="background-color:none;border-radius:20px;">
           <a style="color:red;" class="nav-link" href="../util/logout.php">Cerrar Sesion</a>
         </li>

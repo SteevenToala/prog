@@ -94,7 +94,10 @@ if ($resultVehiculos->num_rows > 0) {
 <body>
     <div class="container-fluid">
         <div class="row">
-            <?php include './util/menu.php'; ?>
+            <?php include './util/menu.php'; 
+            include './modals/modal_addRev.html';
+            ?>
+            
             <div class="col-md-3">
                 <!-- Barra lateral de filtros -->
                 <div class="p-3 border rounded shadow-sm bg-light" id="filterSidebar">
