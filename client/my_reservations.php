@@ -263,6 +263,9 @@ $conn->close();
         <div class="row flex-grow-1 ">
             <?php
              include './util/menu.php';
+             include './modals/modal_EditarFechaF.html';
+             include './modals/modal_remRev.php';
+             
              
             ?>
             <main class="col-12 mx-auto px-4 main-content d-flex flex-column h-100">
@@ -278,11 +281,14 @@ $conn->close();
                         <th>Fecha Inicio</th>
                         <th>Fecha Fin</th>  
                         <th>Tarifa <br>(por hora)</th>
-                        <th>Monto esperado</th>                                                                                              
+                        <th>Monto esperado</th> 
+                        <th>Acciones</th>    
+                        <th></th>                                                                                         
                         
                         
                     </thead>
                     <tbody id="tablaRents">
+                        <?php if ($data): ?>
                         <?php foreach ($data as $rent): ?>
                             <tr id="rent-<?php echo $rent['id'] ?>">
                               <th class="nombre"><?php echo $rent['nombre_usuario'] ?></th>
@@ -298,12 +304,30 @@ $conn->close();
                                 <th class="fecha_fin"><?php echo $rent['fecha_fin'] ?></th>                                 
                                 <th class="tarifa"><?php echo $rent['tarifa'] ?></th>
                                 <th class="monto_esperado"><?php echo $rent['monto_esperado'] ?></th>
-                                
+                                <th>
+                                    <button class="btn btn-warning btn-sm editar"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#editFechaF"
+                                        data-id="<?php echo $rent['id']; ?>"
+                                        data-fechaInicio="<?php echo $rent['fecha_inicio']; ?>"
+                                        data-fechaFin="<?php echo $rent['fecha_fin']; ?>"
+                                        data-nombreUsuario="<?php echo $rent['nombre_usuario']; ?>"
+                                        data-vehiculoid="<?php echo htmlspecialchars($rent['vehiculo_id'], ENT_QUOTES, 'UTF-8'); ?>"
+                                        data-matricula="<?php echo htmlspecialchars($rent['matricula'], ENT_QUOTES, 'UTF-8'); ?>"
+                                        data-marca="<?php echo htmlspecialchars($rent['marca'], ENT_QUOTES, 'UTF-8'); ?>"
+                                        data-modelo="<?php echo htmlspecialchars($rent['modelo'], ENT_QUOTES, 'UTF-8'); ?>">
+                                        Editar fechas
+                                    </button>
+                                </th>
+                                <th><button class="btn btn-danger btn-sm eliminar" data-id="<?php echo $rent['id']; ?>">Eliminar</button></th>
                                 
                                 
                                                                 
                             </tr>
                         <?php endforeach; ?>
+                        <?php else: ?>
+                            <tr class="text-center"><th></th><th></th><th></th><th></th><th>No se encontraron vehículos.</th><th></th><th></th><th></th><th></th></tr>
+                        <?php endif; ?>
                     </tbody>
                 </table>
                
@@ -338,6 +362,64 @@ $conn->close();
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>    
     <script src="../employee/home_section/js/contrato.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="./js/editReservations.js"></script>
+    <script src="./js/removeReservations.js"></script>
+    <script>
+  // Inicializar Flatpickr para el campo de fecha y hora de inicio
+  flatpickr("#fecha_inicio", {
+    enableTime: true,   // Habilitar la selección de hora
+    time_24hr: true,    // Formato de 24 horas
+    dateFormat: "Y-m-d H:i:S",  // Formato con fecha, hora, minutos y segundos
+    minuteIncrement: 1, // Incremento de 1 minuto
+    secondIncrement: 1, // Incremento de 1 segundo
+    onChange: function(selectedDates, dateStr, instance) {
+      // Cuando se cambia la fecha de inicio, actualizar la fecha de fin
+      if (selectedDates[0]) {
+        const inicioDate = selectedDates[0];
+        // Establecer el mínimo permitido en fecha de fin (con precisión de horas, minutos y segundos)
+        const minDate = inicioDate.toLocaleString('sv-SE');  // Utiliza el formato local
+        document.getElementById('fecha_fin')._flatpickr.set('minDate', minDate);
+
+        // Validar la diferencia de tiempo (debe ser al menos 1 minuto)
+        const fechaFin = document.getElementById('fecha_fin')._flatpickr.selectedDates[0];
+        if (fechaFin && (fechaFin - inicioDate) < 60000) {  // 60000 ms = 1 minuto
+          // Mostrar el modal de error
+          var myModal = new bootstrap.Modal(document.getElementById('modalError'));
+          myModal.show();
+          document.getElementById('fecha_fin')._flatpickr.clear();
+        }
+      }
+    }
+  });
+
+  // Inicializar Flatpickr para el campo de fecha y hora de fin
+  flatpickr("#fecha_fin", {
+    enableTime: true,   // Habilitar la selección de hora
+    time_24hr: true,    // Formato de 24 horas
+    dateFormat: "Y-m-d H:i:S",  // Formato con fecha, hora, minutos y segundos
+    minuteIncrement: 1, // Incremento de 1 minuto
+    secondIncrement: 1, // Incremento de 1 segundo
+    onChange: function(selectedDates, dateStr, instance) {
+      // Cuando se cambia la fecha de fin, actualizar la fecha de inicio
+      if (selectedDates[0]) {
+        const finDate = selectedDates[0];
+        // Establecer el máximo permitido en fecha de inicio (con precisión de horas, minutos y segundos)
+        const maxDate = finDate.toISOString().slice(0, 19);
+        document.getElementById('fecha_inicio')._flatpickr.set('maxDate', maxDate);
+
+        // Validar la diferencia de tiempo (debe ser al menos 1 minuto)
+        const fechaInicio = document.getElementById('fecha_inicio')._flatpickr.selectedDates[0];
+        if (fechaInicio && (finDate - fechaInicio) < 60000) {  // 60000 ms = 1 minuto
+          // Mostrar el modal de error
+          var myModal = new bootstrap.Modal(document.getElementById('modalError'));
+          myModal.show();
+          document.getElementById('fecha_inicio')._flatpickr.clear();
+        }
+      }
+    }
+  });
+</script>
     
 
 </body>

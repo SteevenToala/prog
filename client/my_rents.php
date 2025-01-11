@@ -17,7 +17,8 @@ $sql = "SELECT alquileres.id, alquileres.fecha_inicio, alquileres.fecha_fin, alq
         FROM alquileres
         JOIN usuarios ON alquileres.usuario_id = usuarios.id
         JOIN vehiculos ON alquileres.vehiculo_id = vehiculos.id
-        WHERE alquileres.usuario_id = ?";
+        WHERE alquileres.usuario_id = ? AND alquileres.estado = 'Activo'";
+
 
 // Prepara la consulta
 $stmt = $conn->prepare($sql);
