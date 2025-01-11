@@ -254,6 +254,7 @@ if ($result->num_rows > 0) {
                         <th>Fecha Fin</th>                                                                                                                                                                     
                         <th>Cliente</th>
                         <th>Acciones</th>
+                        <th>Fecha Devolucion</th>
                     </thead>
                     <tbody id="tablaRents">
                         <?php foreach ($data as $rent): ?>
