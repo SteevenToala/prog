@@ -8,12 +8,17 @@
             <div class="modal-body">
                 <form id="formFechaF">                   
   
+                    <div class="mb-3">
+                        <label for="fecha_inicio" class="form-label">Fecha y Hora Inicio</label>
+                        <input type="text" class="form-control fecha_inicio" id="fecha_inicio" name="fecha_inicio" required>
+                    </div>
                     <!-- Fecha Devolución -->
                     <div class="mb-3">
                         <label for="fecha_fin" class="form-label">Fecha fin</label>
-                        <input type="date" class="form-control fecha_fin" id="fecha_fin" name="fecha_fin">
+                        <input type="text" class="form-control fecha_fin" id="fecha_fin" name="fecha_fin" required>
                     </div>                   
-                     
+                    
+                      
                     <!-- Hidden Input para Alquiler ID -->
                     <input type="hidden" id="editRentID" name="editRentID">
   

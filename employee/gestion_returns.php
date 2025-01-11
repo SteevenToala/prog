@@ -5,7 +5,7 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo_usuario'] != 'empleado') 
     exit();
 }
 include '../util/conexion.php';
-$sql = "SELECT alquileres.id, alquileres.fecha_inicio, alquileres.fecha_fin, alquileres.estado,alquileres.metodo_pago,alquileres.monto_tarifa,alquileres.descripcion_devolucion,alquileres.fecha_devolucion,alquileres.devuelto,alquileres.cargos_extra,alquileres.monto_total, usuarios.nombre AS nombre_usuario, vehiculos.matricula, vehiculos.marca, vehiculos.modelo, vehiculos.imagen
+$sql = "SELECT alquileres.id, alquileres.fecha_inicio, alquileres.fecha_fin, alquileres.estado,alquileres.devuelto, usuarios.nombre AS nombre_usuario, vehiculos.matricula, vehiculos.marca, vehiculos.modelo, vehiculos.imagen
             FROM alquileres
             JOIN usuarios ON alquileres.usuario_id = usuarios.id
             JOIN vehiculos ON alquileres.vehiculo_id = vehiculos.id";
@@ -24,13 +24,10 @@ if ($result->num_rows > 0) {
             'imagen' => $row['imagen'],
             'nombre_usuario' => $row['nombre_usuario'],
             'estado' => $row['estado'],
-            'monto_tarifa' => $row['monto_tarifa'],
-            'descripcion_devolucion' => $row['descripcion_devolucion'],
-            'fecha_devolucion' => $row['fecha_devolucion'],
+                    
+            
             'devuelto' => $row['devuelto'],
-            'cargos_extra' => $row['cargos_extra'],
-            'metodo_pago' => $row['metodo_pago'],
-            'monto_total' => $row['monto_total']
+                       
         );
     }
 }
@@ -60,6 +57,178 @@ if ($result->num_rows > 0) {
             overflow-x: scroll;
         }
     </style>
+      <style>
+    /* General layout styles */
+    .container-fluid {        
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .tittle-p {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #343a40;
+        margin-top: 20px;
+    }
+
+    .main-content {
+        
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+
+    .table {
+        font-size: 0.9rem;
+        border-collapse: separate;
+        border-spacing: 0;
+        width: 100%;
+        margin: 20px 0;
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .table th, .table td {
+        padding: 12px;
+        text-align: center;
+        vertical-align: middle;
+    }
+    .table{
+      --bs-table-bg: none !important;
+    }
+    .table thead {        
+        background: linear-gradient(90deg, #6a11cb, #2575fc);
+        color: white ;        
+        font-size: 1rem;
+    }
+    .table thead th{
+      color: white;
+    }
+
+    .table tbody tr:nth-child(odd) {
+        background-color: #f8f9fa;
+    }
+
+    .table tbody tr:nth-child(even) {
+        background-color: #e9ecef;
+    }
+
+    .table tbody tr:hover {
+        background-color: #dee2e6;
+        transform: scale(1.01);
+        transition: all 0.2s ease-in-out;
+    }
+
+    .table th:first-child, .table td:first-child {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+
+    .table th:last-child, .table td:last-child {
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    img {
+        width: 80px;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    img:hover {
+        transform: scale(1.1);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn {
+        font-size: 0.85rem;
+        border-radius: 8px;
+        padding: 8px 16px;
+        transition: all 0.3s ease;
+    }
+
+    .btn-warning {
+        background-color: #f1c40f;
+        color: white;
+        border: none;
+    }
+
+    .btn-warning:hover {
+        background-color: #e67e22;
+        transform: scale(1.05);
+    }
+
+    .btn-danger {
+        background-color: #e74c3c;
+        color: white;
+        border: none;
+    }
+
+    .btn-danger:hover {
+        background-color: #c0392b;
+        transform: scale(1.05);
+    }
+
+    .btn-primary {
+        background-color: #3498db;
+        color: white;
+        border: none;
+    }
+
+    .btn-primary:hover {
+        background-color: #2980b9;
+        transform: scale(1.05);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .table th, .table td {
+            font-size: 0.8rem;
+        }
+
+        img {
+            width: 60px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .table {
+            font-size: 0.8rem;
+        }
+
+        .table thead {
+            display: none;
+        }
+
+        .table tbody tr {
+            display: block;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .table tbody tr td {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+        }
+
+        .table tbody tr td::before {
+            content: attr(data-label);
+            font-weight: bold;
+            color: #6c757d;
+            margin-right: 10px;
+        }
+
+        img {
+            width: 50px;
+        }
+    }
+</style>
 </head>
 
 <body>
@@ -78,18 +247,11 @@ if ($result->num_rows > 0) {
                 <h1 class="tittle-p">Gestion de devoluciones</h1>
                 <div id="alerta2" class="alert d-none" role="alert"></div>
                 <table class="table table-striped mt-4">
-                    <thead class="table-dark">
+                    <thead>
                         <th>Imagen</th>
                         <th>Vehiculo</th>
                         <th>Fecha Inicio</th>
-                        <th>Fecha Fin</th>
-                        <th>Fecha Devolucion</th>
-                        <th>Monto Tarifa</th>
-                        <th>Cargos Extra</th>
-                        <th>Monto Total</th>
-                        <th>Descripcion</th>
-                        <th>Devuelto</th>
-                        <th>Metodo de pago</th>
+                        <th>Fecha Fin</th>                                                                                                                                                                     
                         <th>Cliente</th>
                         <th>Acciones</th>
                     </thead>
@@ -103,28 +265,18 @@ if ($result->num_rows > 0) {
                                 </th>
                                 <th class="matricula"><?php echo $rent['matricula'] ?>/<?php echo $rent['marca'] ?>/<?php echo $rent['modelo'] ?></th>
                                 <th><?php echo $rent['fecha_inicio'] ?></th>
-                                <th><?php echo $rent['fecha_fin'] ?></th>
-                                <th class="fecha"><?php echo $rent['fecha_devolucion'] ?></th>
-                                <th class="monto"><?php echo $rent['monto_tarifa'] ?></th>
-                                <th class="cargos"><?php echo $rent['cargos_extra'] ?></th>
-                                <th class="montoT"><?php echo $rent['monto_total'] ?></th>
-                                <th class="descripcion"><?php echo $rent['descripcion_devolucion'] ?></th>
-                                <th class="devuelto"><?php echo $rent['devuelto'] ?></th>
-                                <th class="metodo"><?php echo $rent['metodo_pago'] ?></th>
+                                <th><?php echo $rent['fecha_fin'] ?></th>                                                                
+                                                                                                                            
                                 <th class="nombre"><?php echo $rent['nombre_usuario'] ?></th>
                                 <th>
                                     <?php if (!empty($rent['fecha_fin'])): ?>
                                         <button class="btn btn-warning btn-sm editar"
                                             data-bs-toggle="modal"
                                             data-bs-target="#editModalRent"
-                                            data-id="<?php echo $rent['id']; ?>"
-                                            data-fechaDevolucion="<?php echo $rent['fecha_devolucion']; ?>"                                            
-                                            data-cargosExtra="<?php echo $rent['cargos_extra']; ?>"
-                                            data-descripcionDevolucion="<?php echo $rent['descripcion_devolucion']; ?>"
-                                            data-metodo="<?php echo $rent['metodo_pago']; ?>"
-                                            data-devuelto="<?php echo $rent['devuelto']; ?>"
+                                            data-id="<?php echo $rent['id']; ?>"                                                                                                                              
+                                           
                                             data-matricula="<?php echo htmlspecialchars($rent['matricula'], ENT_QUOTES, 'UTF-8'); ?>">
-                                            Editar
+                                            Registrar
                                         </button>
                                     <?php endif; ?>
                                 </th>

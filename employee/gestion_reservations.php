@@ -5,11 +5,13 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo_usuario'] != 'empleado') 
     exit();
 }
 include '../util/conexion.php';
-$sql = "SELECT alquileres.id, alquileres.fecha_inicio, alquileres.fecha_fin, alquileres.estado, usuarios.nombre AS nombre_usuario,vehiculos.id AS vehiculo_id, vehiculos.matricula, vehiculos.marca , vehiculos.tarifa , alquileres.monto_esperado , vehiculos.modelo, vehiculos.imagen
-            FROM alquileres
-            JOIN usuarios ON alquileres.usuario_id = usuarios.id
-            JOIN vehiculos ON alquileres.vehiculo_id = vehiculos.id";
+$sql = "SELECT alquileres.id, alquileres.fecha_inicio, alquileres.fecha_fin, alquileres.estado, usuarios.nombre AS nombre_usuario, vehiculos.id AS vehiculo_id, vehiculos.matricula, vehiculos.marca, vehiculos.tarifa, alquileres.monto_esperado, vehiculos.modelo, vehiculos.imagen
+        FROM alquileres
+        JOIN usuarios ON alquileres.usuario_id = usuarios.id
+        JOIN vehiculos ON alquileres.vehiculo_id = vehiculos.id
+        WHERE alquileres.estado = 'Reservado'";
 $result = mysqli_query($conn, $sql);
+
 
 $data = array();
 if ($result->num_rows > 0) {
@@ -235,10 +237,6 @@ if ($result->num_rows > 0) {
 
 <body>
     <?php
-    include './home_section/modals/contrato.html';
-    include './home_section/modals/modal_addRent.php';
-    include './home_section/modals/modal_editRent.php';
-    include './home_section/modals/modal_EditarFechaF.html';
 
     ?>
 
@@ -248,7 +246,7 @@ if ($result->num_rows > 0) {
             include './home_section/scripts/menu.php'
             ?>
             <main class="col-12 mx-auto px-4 main-content d-flex flex-column h-100">
-                <h1 class="tittle-p">Gestion de alquileres</h1>
+                <h1 class="tittle-p">Gestion de reservas</h1>
                 <div id="alerta2" class="alert d-none" role="alert"></div>
                 <table class="table table-striped mt-4">
                     <thead>
@@ -260,8 +258,7 @@ if ($result->num_rows > 0) {
                         <th>Fecha Inicio</th>
                         <th>Fecha Fin</th>  
                         <th>Tarifa <br>(por hora)</th>
-                        <th>Monto esperado</th>                                                                      
-                        <th>Contrato</th>
+                        <th>Monto esperado</th>                                                                                              
                         <th>Acciones</th>
                         <th></th>
                         <th></th>
@@ -282,21 +279,6 @@ if ($result->num_rows > 0) {
                                 <th class="fecha_fin"><?php echo $rent['fecha_fin'] ?></th>                                 
                                 <th class="tarifa"><?php echo $rent['tarifa'] ?></th>
                                 <th class="monto_esperado"><?php echo $rent['monto_esperado'] ?></th>
-                                
-
-                                <th>
-                                    <button class="btn btn-warning btn-sm"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#contratoModal"
-                                        data-id="<?php echo $rent['id']; ?>"
-                                        data-fechaInicio="<?php echo $rent['fecha_inicio']; ?>"
-                                        data-fechaInicio="<?php echo $rent['fecha_fin']; ?>"
-                                        data-nombreUsuario="<?php echo $rent['nombre_usuario']; ?>"
-                                        data-matricula="<?php echo htmlspecialchars($rent['matricula'], ENT_QUOTES, 'UTF-8'); ?>"
-                                        data-vehiculoid="<?php echo htmlspecialchars($rent['vehiculo_id'], ENT_QUOTES, 'UTF-8'); ?>">
-                                        Ver Contrato
-                                    </button>
-                                </th>
                                 <th>
                                     <button class="btn btn-warning btn-sm editar"
                                         data-bs-toggle="modal"
@@ -309,25 +291,10 @@ if ($result->num_rows > 0) {
                                         data-matricula="<?php echo htmlspecialchars($rent['matricula'], ENT_QUOTES, 'UTF-8'); ?>"
                                         data-marca="<?php echo htmlspecialchars($rent['marca'], ENT_QUOTES, 'UTF-8'); ?>"
                                         data-modelo="<?php echo htmlspecialchars($rent['modelo'], ENT_QUOTES, 'UTF-8'); ?>">
-                                        Editar usuario y vehiculo
+                                        Aprobar
                                     </button>
-                                </th>
-                                <th>
-                                    <button class="btn btn-warning btn-sm editar"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#editFechaF"
-                                        data-id="<?php echo $rent['id']; ?>"
-                                        data-fechaInicio="<?php echo $rent['fecha_inicio']; ?>"
-                                        data-fechaFin="<?php echo $rent['fecha_fin']; ?>"
-                                        data-nombreUsuario="<?php echo $rent['nombre_usuario']; ?>"
-                                        data-vehiculoid="<?php echo htmlspecialchars($rent['vehiculo_id'], ENT_QUOTES, 'UTF-8'); ?>"
-                                        data-matricula="<?php echo htmlspecialchars($rent['matricula'], ENT_QUOTES, 'UTF-8'); ?>"
-                                        data-marca="<?php echo htmlspecialchars($rent['marca'], ENT_QUOTES, 'UTF-8'); ?>"
-                                        data-modelo="<?php echo htmlspecialchars($rent['modelo'], ENT_QUOTES, 'UTF-8'); ?>">
-                                        Editar fechas
-                                    </button>
-                                </th>
-                                <th><button class="btn btn-danger btn-sm eliminar" data-id="<?php echo $rent['id']; ?>">Eliminar</button></th>
+                                </th>                                                               
+                                <th><button class="btn btn-danger btn-sm eliminar" data-id="<?php echo $rent['id']; ?>">Desaprobar</button></th>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
@@ -366,11 +333,8 @@ if ($result->num_rows > 0) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="./home_section/js/addRent.js"></script>
-    <script src="./home_section/js/editRent.js"></script>
-    <script src="./home_section/js/removeRent.js"></script>
-    <script src="./home_section/js/contrato.js"></script>
-    <script src="./home_section/js/editFechaFin.js"></script>
+    
+    <script src="./home_section/js/contrato.js"></script>    
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     <script>

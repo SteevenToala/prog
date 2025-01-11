@@ -21,6 +21,10 @@ CREATE TABLE `alquileres` (
   CONSTRAINT `alquileres_ibfk_2` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+CREATE TABLE `devoluciones`(
+
+)
+
 --
 -- Volcado de datos para la tabla `alquileres`
 --
@@ -108,6 +112,13 @@ CREATE TABLE `vehiculos` (
   UNIQUE KEY `matricula` (`matricula`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+
+
+
+CREATE TABLE `devoluciones`(
+
+)
+
 --
 -- Volcado de datos para la tabla `vehiculos`
 --
@@ -136,5 +147,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `vehiculos`
 ALTER TABLE `vehiculos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+
+ALTER TABLE alquileres
+ADD COLUMN metodo_pago ENUM('tarjeta', 'efectivo') DEFAULT 'efectivo';
+ALTER TABLE `alquileres`
+CHANGE `monto_total` `monto_esperado` DECIMAL(10, 2) COMMENT 'Monto esperado del alquiler (tarifa base sin cargos adicionales)';
+
+ALTER TABLE `alquileres` 
+MODIFY COLUMN `estado` ENUM('Activo', 'Inactivo', 'Reservado') DEFAULT 'Activo';
 
 COMMIT;

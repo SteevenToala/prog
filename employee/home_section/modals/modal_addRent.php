@@ -45,10 +45,16 @@ if ($resultv->num_rows > 0) {
       <div class="modal-body d-flex">
         <!-- Formulario principal -->
         <form id="formAddRent" class="w-50">
-          <div class="mb-3">
-            <label for="fecha_fin_1" class="form-label">Fecha Fin</label>
-            <input type="date" class="form-control fecha_fin" id="fecha_fin_1" name="fecha_fin_1" required>
-          </div>
+        <div class="mb-3">
+  <label for="fecha_inicio_1" class="form-label">Fecha y Hora Inicio</label>
+  <input type="text" class="form-control fecha_inicio" id="fecha_inicio_1" name="fecha_inicio_1" required>
+</div>
+<div class="mb-3">
+  <label for="fecha_fin_1" class="form-label">Fecha y Hora Fin</label>
+  <input type="text" class="form-control fecha_fin" id="fecha_fin_1" name="fecha_fin_1" required>
+</div>
+
+
           <div class="mb-3">
             <label for="nombre_usuario" class="form-label">Nombre Usuario</label>
             <select id="nombre_usuario" name="nombre_usuario" class="form-select" required>
@@ -70,12 +76,12 @@ if ($resultv->num_rows > 0) {
           </div>
           <ul id="vehicleList" class="list-group overflow-auto" style="max-height: 300px;">
             <?php foreach ($datavehicles as $vehicle): ?>
-              <li class="list-group-item d-flex align-items-center vehicle-item" 
-                  data-id="<?php echo $vehicle['id']; ?>" 
-                  data-marca="<?php echo strtolower($vehicle['marca']); ?>" 
-                  data-modelo="<?php echo strtolower($vehicle['modelo']); ?>" 
-                  data-matricula="<?php echo strtolower($vehicle['matricula']); ?>" 
-                  onclick="selectVehicle('<?php echo $vehicle['id']; ?>', '<?php echo $vehicle['marca']; ?>', '<?php echo $vehicle['modelo']; ?>', '<?php echo $vehicle['matricula']; ?>')">
+              <li class="list-group-item d-flex align-items-center vehicle-item"
+                data-id="<?php echo $vehicle['id']; ?>"
+                data-marca="<?php echo strtolower($vehicle['marca']); ?>"
+                data-modelo="<?php echo strtolower($vehicle['modelo']); ?>"
+                data-matricula="<?php echo strtolower($vehicle['matricula']); ?>"
+                onclick="selectVehicle('<?php echo $vehicle['id']; ?>', '<?php echo $vehicle['marca']; ?>', '<?php echo $vehicle['modelo']; ?>', '<?php echo $vehicle['matricula']; ?>')">
                 <img src="../images/autos/<?php echo $vehicle['imagen']; ?>" alt="Imagen de <?php echo $vehicle['marca']; ?>" class="me-3" style="width: 50px; height: 50px; object-fit: cover;">
                 <div>
                   <strong><?php echo $vehicle['marca']; ?> - <?php echo $vehicle['modelo']; ?></strong><br>
@@ -90,4 +96,30 @@ if ($resultv->num_rows > 0) {
   </div>
 </div>
 
+
+
+
+
+
+
+
+
+            <!--MODAL ELIMINAR RENTA-->
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Eliminación</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ¿Estás seguro de que deseas eliminar este alquiler?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" id="confirmDeleteBtn" class="btn btn-danger">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
 

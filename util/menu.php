@@ -18,8 +18,8 @@
         <li class="nav-item">
           <a class="nav-link" href="registrarse.php">Registrarse</a>
         </li>
-        <li class="nav-item" style="background-color:#0d6efd;border-radius:20px;">
-          <a style="color:white;" class="nav-link" href="iniciarSesion.php">Iniciar Sesion</a>
+        <li class="nav-item" >
+          <a style="color:black;" class="nav-link" href="iniciarSesion.php">Iniciar Sesion</a>
         </li>
       </ul>
     </div>

@@ -60,6 +60,101 @@ $conn->close();
             overflow-x: scroll;
         }
     </style>
+     <style>
+    .table {
+        font-family: 'Verdana', sans-serif;
+        font-size: 0.9rem;
+        border-collapse: separate;
+        border-spacing: 0 8px;
+    }
+
+    .table th, .table td {
+        vertical-align: middle;
+        text-align: center;
+        padding: 12px;
+    }
+
+    .table thead {
+        background: linear-gradient(90deg, #6a11cb, #2575fc);
+        color: white;
+        border-radius: 8px;
+    }
+
+    .table thead th {
+        border: none;
+        padding: 15px;
+    }
+
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #f0f4ff;
+    }
+
+    .table-striped tbody tr:nth-of-type(even) {
+        background-color: #e6edfc;
+    }
+
+    .table tbody tr:hover {
+        background-color: #d1e3ff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transform: scale(1.02);
+        transition: all 0.3s ease;
+    }
+
+    img {
+        border: 3px solid #dee2e6;
+        border-radius: 8px;
+        transition: transform 0.3s, border-color 0.3s;
+    }
+
+    img:hover {
+        transform: scale(1.1);
+        border-color: #6a11cb;
+    }
+
+    .btn-warning {
+        background-color: #fcb045;
+        border: none;
+        color: white;
+        transition: all 0.3s ease;
+    }
+
+    .btn-warning:hover {
+        background-color: #f58025;
+        transform: scale(1.05);
+    }
+
+    .btn-danger {
+        background-color: #ff4e50;
+        border: none;
+        color: white;
+        transition: all 0.3s ease;
+    }
+
+    .btn-danger:hover {
+        background-color: #d93a40;
+        transform: scale(1.05);
+    }
+
+    .btn-sm {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+        border-radius: 4px;
+    }
+
+    th, td {
+        border-bottom: 1px solid #dcdcdc;
+    }
+
+    th:first-child, td:first-child {
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+    }
+
+    th:last-child, td:last-child {
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+    }
+</style>
 </head>
 
 <body>

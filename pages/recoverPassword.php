@@ -19,6 +19,8 @@ include '../util/verificadorSesion.php';
   <title>Iniciar Sesión</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../styles/background.css">
+  <link rel="stylesheet" href="../styles/menu.css">
+  <link rel="stylesheet" href="../styles/footer.css">
   <style>
     .container-login {
       background-color: rgba(255, 255, 255, 0.9);
@@ -27,6 +29,10 @@ include '../util/verificadorSesion.php';
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       width: 100%;
       max-width: 400px;
+    }
+    .container-login .footer{
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #0072ff;
     }
 
     h2 {
@@ -252,7 +258,10 @@ include '../util/verificadorSesion.php';
     </div>
 </div>
 
+<?php 
 
+  include '../util/footer.html'
+  ?>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../js/recoverPassword.js"></script>

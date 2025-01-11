@@ -15,6 +15,7 @@ $('#formAddRent').submit(function (e) {
                 modal.hide();
 
                 var nuevaFila = `<tr>
+                    <th>${data.nombre}</th>
                     <th>
                         <img src="../images/autos/${data.imagen}" alt=""
                         style="width: 100px; height: auto; border-radius: 5px;">
@@ -23,9 +24,10 @@ $('#formAddRent').submit(function (e) {
                     <th>${data.marca}</th>
                     <th>${data.modelo}</th>
                     <th>${data.fecha_inicio}</th>
-                    <th>${data.fecha_fin}</th>
-                    <th>Activo</th>
-                    <th>${data.nombre}</th>
+                    <th>${data.fecha_fin}</th>  
+                    <th>${data.tarifa}</th>  
+                    <th>${data.monto_esperado}</th>  
+                    
                     <th>
                         <button class="btn btn-warning btn-sm"
                             data-bs-toggle="modal"

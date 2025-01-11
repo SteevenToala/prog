@@ -27,6 +27,8 @@ if (isset($_SESSION['usuario_id'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap">  
     <link rel="stylesheet" href="./styles/index.css">
+    <link rel="stylesheet" href="./styles/menu.css">
+    
     <title>Alquiler de Autos Premium</title>
     <style>
        

@@ -49,19 +49,7 @@ $('#formEditRent').submit(function(e) {
                 }else{
                     console.log('este option no existe');
                 }
-
-                var optionAgregar = document.createElement('option');
-                optionAgregar.value = response.vehiculo_antiguo.id;
-                optionAgregar.id = 'eV'+response.vehiculo_antiguo.id;
-                optionAgregar.textContent= response.vehiculo_antiguo.marca+' - '+response.vehiculo_antiguo.modelo+' - '+ response.vehiculo_antiguo.matricula+' - ';
-
-                addOptionalEmilimar('matricula_vehiculoE',optionAgregar);
-
-                var optionAgregarA = document.createElement('option');
-                optionAgregarA.value = response.vehiculo_antiguo.id;
-                optionAgregarA.id = 'aV'+response.vehiculo_antiguo.id;
-                optionAgregarA.textContent= response.vehiculo_antiguo.marca+' - '+response.vehiculo_antiguo.modelo+' - '+ response.vehiculo_antiguo.matricula+' - ';
-                addOptionalEmilimar('matricula_vehiculo',optionAgregarA);
+               
 
                 
                 $('button[data-id="' + id_alquiler + '"]').attr({                    

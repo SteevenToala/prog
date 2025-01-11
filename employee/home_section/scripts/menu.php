@@ -17,6 +17,11 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="./gestion_reservations.php">
+                        <i class="fas fa-users me-2"></i> Gestión de Reservas
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="./gestion_returns.php">
                         <i class="fas fa-car me-2"></i> Gestión de Devoluciones
                     </a>

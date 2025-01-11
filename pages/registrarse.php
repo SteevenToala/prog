@@ -11,6 +11,8 @@ include '../util/verificadorSesion.php';
   <title>Registrarse</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../styles/background.css">
+  <link rel="stylesheet" href="../styles/menu.css">
+  <link rel="stylesheet" href="../styles/footer.css">
   <style>
     .container-registro {
       background-color: rgba(255, 255, 255, 0.9);
@@ -20,6 +22,10 @@ include '../util/verificadorSesion.php';
       width: 100%;
       max-width: 500px;
       margin-top: 50px;
+    }
+    .container-registro .footer{
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #0072ff;
     }
 
     h2 {
@@ -105,7 +111,8 @@ include '../util/verificadorSesion.php';
 
   <?php 
   include '../util/codigomodal.html';
-  include '../util/modalCRegistrar.html'
+  include '../util/modalCRegistrar.html';
+  include '../util/footer.html'
   ?>
 
   <!-- Scripts de Bootstrap y jQuery -->

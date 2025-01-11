@@ -17,7 +17,7 @@
                 <?php endforeach;?>
               </select>
             </div>
-            <input type="hidden" id="matricula_vehiculoE" name="matricula_vehiculoE" required>
+            <input type="hidden" id="matricula_vehiculoE" name="matricula_vehiculoE" >
             <p id="selectedVehicleE" class="text-success"></p>
             <button type="submit" class="btn btn-primary" id="submitEditRentButton" disabled>Editar Alquiler</button>
           </form>

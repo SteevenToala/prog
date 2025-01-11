@@ -1,53 +1,48 @@
-var mdEdit = document.getElementById('matricula_vehiculo');
+let rentIdToDelete = null; // Variable para almacenar el ID temporalmente
+let targetRow = null; // Variable para almacenar la fila temporalmente
 
 $(document).on('click', '.eliminar', function (e) {
-    const idRent = $(this).data('id'); 
+    rentIdToDelete = $(this).data('id'); // Almacena el ID del alquiler
+    targetRow = $(this).closest('tr'); // Almacena la fila para eliminar
+    const modal = new bootstrap.Modal(document.getElementById('confirmDeleteModal'));
+    modal.show(); // Muestra el modal de confirmación
+});
+
+$('#confirmDeleteBtn').on('click', function () {
+    if (!rentIdToDelete) return;
 
     $.ajax({
         url: './home_section/scripts/removeRent.php', 
         type: 'POST', 
         dataType: 'json', 
-        data: { rent_id: idRent },
+        data: { rent_id: rentIdToDelete },
         success: function (response) {
             const alerta = $('#alerta2');
 
             if (response.success) { 
                 alerta.removeClass('d-none alert-danger').addClass('alert-success').text('Alquiler eliminado correctamente');                                
-                
-                var optionVehiculo = document.createElement('option');
-                optionVehiculo.value = response.id_vehiculo;
-                optionVehiculo.id = 'aV' + response.id_vehiculo;
-                optionVehiculo.textContent = `${response.marca} - ${response.modelo} - ${response.matricula}`;
 
+               
+        
                 
-                addOptionalEmilimar('matricula_vehiculo', optionVehiculo);
-
-                var optionVehiculoE = document.createElement('option');
-                optionVehiculoE.value = response.id_vehiculo;
-                optionVehiculoE.id = 'eV' + response.id_vehiculo;
-                optionVehiculoE.textContent = `${response.marca} - ${response.modelo} - ${response.matricula}`;
-                addOptionalEmilimar('matricula_vehiculoE', optionVehiculoE);
-
-                
-                $(e.target).closest('tr').remove(); 
+                location.reload();
             } else { 
                 alerta.removeClass('d-none alert-success').addClass('alert-danger').text('Error: ' + response.message);
             }
+
+            // Cierra el modal
+            $('#confirmDeleteModal').modal('hide');
         },
         error: function (xhr, status, error) { 
             console.error('Error:', error);
             const alerta = $('#alerta2');
             alerta.removeClass('d-none alert-success').addClass('alert-danger').text('Ocurrió un error inesperado.');
+
+            // Cierra el modal
+            $('#confirmDeleteModal').modal('hide');
         }
     });
+
+    rentIdToDelete = null; // Resetea la variable
+    targetRow = null; // Resetea la fila
 });
-
-
-function addOptionalEmilimar(idSelect, option) {
-    var select = document.getElementById(idSelect);
-    if (!select) {
-        console.error(`No se encontró el elemento <select> con id "${idSelect}".`);
-        return;
-    }    
-    select.appendChild(option); // Ahora 'option' es un nodo DOM válido
-}
