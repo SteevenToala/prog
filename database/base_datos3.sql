@@ -95,3 +95,37 @@ INSERT INTO `alquileres` (`id`, `vehiculo_id`, `usuario_id`, `fecha_inicio`, `fe
 (112, 35, 11, '2025-01-10 12:00:00', '2025-01-10 12:01:00', 'Activo', 'no', 123.00),
 (117, 36, 118, '2025-01-11 12:00:00', '2025-01-11 14:00:00', 'Activo', 'no', 246.00),
 (118, 37, 118, '2025-01-11 12:00:00', '2025-01-11 15:00:00', 'Reservado', 'no', 369.00);
+
+
+
+
+
+
+
+
+
+
+
+
+
+CREATE TABLE `devoluciones` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `alquiler_id` int(11) NOT NULL,
+  `fecha_devolucion` datetime NOT NULL COMMENT 'Fecha y hora de la devolución',
+  `estado_vehiculo` enum('Excelente', 'Bueno', 'Regular', 'Malo') DEFAULT 'Excelente' COMMENT 'Estado general del vehículo al devolverlo',
+  `limpieza` enum('Limpio', 'Sucia') DEFAULT 'Limpio' COMMENT 'Estado de limpieza del vehículo',
+  `nivel_combustible` enum('Lleno', '3/4', '1/2', '1/4', 'Vacío') DEFAULT 'Lleno' COMMENT 'Nivel de combustible al devolver el vehículo',  
+  `daños_visibles` enum('Ninguno', 'Rayones', 'Abolladuras', 'Cristales rotos', 'Otros') DEFAULT 'Ninguno' COMMENT 'Daños visibles reportados al devolver el vehículo',
+  `costo_limpieza` decimal(10,2) DEFAULT 0.00 COMMENT 'Costo por limpieza del vehículo',
+  `costo_danos_leves` decimal(10,2) DEFAULT 0.00 COMMENT 'Costo por daños leves en el vehículo',
+  `costo_danos_graves` decimal(10,2) DEFAULT 0.00 COMMENT 'Costo por daños graves en el vehículo',
+  `costo_combustible` decimal(10,2) DEFAULT 0.00 COMMENT 'Costo por falta de combustible al devolver el vehículo',
+  `tiempo_retraso` int(11) DEFAULT 0 COMMENT 'Horas de retraso en la devolución respecto al contrato',
+  `cargo_por_retraso` decimal(10,2) DEFAULT 0.00 COMMENT 'Cargos adicionales por retraso en la devolución',
+  `cargos_adicionales` decimal(10,2) DEFAULT 0.00 COMMENT 'Cargos adicionales totales (daños, limpieza, combustible, retrasos)',
+  `observaciones` text DEFAULT NULL COMMENT 'Comentarios adicionales sobre la devolución',
+  `costo_total` decimal(10,2) GENERATED ALWAYS AS (`costo_limpieza` + `costo_danos_leves` + `costo_danos_graves` + `costo_combustible` + `cargo_por_retraso`) STORED COMMENT 'Costo total calculado automáticamente',
+  PRIMARY KEY (`id`),
+  KEY `alquiler_id` (`alquiler_id`),
+  CONSTRAINT `devoluciones_ibfk_1` FOREIGN KEY (`alquiler_id`) REFERENCES `alquileres` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
