@@ -315,7 +315,7 @@ if ($result->num_rows > 0) {
                         <td><?php echo $rent['nombre_usuario']; ?></td>
                         <td>
                             <?php if (is_null($rent['devolucion_id'])): ?>
-                                <button data-id="<?php echo $rent['alquiler_id']; ?>" type="button"
+                                <button data-id="<?php echo $rent['alquiler_id']; ?>" data-fechaInicio="<?php echo $rent['fecha_inicio']; ?>" type="button"
                                     class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#devolucionModal">
                                     Registrar Devolución
                                 </button>
