@@ -73,191 +73,199 @@ if ($result->num_rows > 0) {
     <link rel="stylesheet" href="../styles/footer.css">
 
 
-<link rel="stylesheet" href="../styles/home_admin.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<style>
-    .xd {
-        display: flex;
-        width: 90%;
-        height: 90%;
-        background-color: aliceblue;
-        border-radius: 20px;
-        padding: 10px;
-        overflow-x: scroll;
-    }
-</style>
-<style>
-/* General layout styles */
-.container-fluid {        
-    font-family: 'Roboto', sans-serif;
-}
+    <link rel="stylesheet" href="../styles/home_admin.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <style>
+        .xd {
+            display: flex;
+            width: 90%;
+            height: 90%;
+            background-color: aliceblue;
+            border-radius: 20px;
+            padding: 10px;
+            overflow-x: scroll;
+        }
+    </style>
+    <style>
+        /* General layout styles */
+        .container-fluid {
+            font-family: 'Roboto', sans-serif;
+        }
 
-.tittle-p {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #343a40;
-    margin-top: 20px;
-}
+        .tittle-p {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #343a40;
+            margin-top: 20px;
+        }
 
-.main-content {
-    
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-}
+        .main-content {
 
-.table {
-    font-size: 0.9rem;
-    border-collapse: separate;
-    border-spacing: 0;
-    width: 100%;
-    margin: 20px 0;
-    background: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
 
-.table th, .table td {
-    padding: 12px;
-    text-align: center;
-    vertical-align: middle;
-}
-.table{
-  --bs-table-bg: none !important;
-}
-.table thead {        
-    background: linear-gradient(90deg, #6a11cb, #2575fc);
-    color: white ;        
-    font-size: 1rem;
-}
-.table thead th{
-  color: white;
-}
+        .table {
+            font-size: 0.9rem;
+            border-collapse: separate;
+            border-spacing: 0;
+            width: 100%;
+            margin: 20px 0;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
-.table tbody tr:nth-child(odd) {
-    background-color: #f8f9fa;
-}
+        .table th,
+        .table td {
+            padding: 12px;
+            text-align: center;
+            vertical-align: middle;
+        }
 
-.table tbody tr:nth-child(even) {
-    background-color: #e9ecef;
-}
+        .table {
+            --bs-table-bg: none !important;
+        }
 
-.table tbody tr:hover {
-    background-color: #dee2e6;
-    transform: scale(1.01);
-    transition: all 0.2s ease-in-out;
-}
+        .table thead {
+            background: linear-gradient(90deg, #6a11cb, #2575fc);
+            color: white;
+            font-size: 1rem;
+        }
 
-.table th:first-child, .table td:first-child {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-}
+        .table thead th {
+            color: white;
+        }
 
-.table th:last-child, .table td:last-child {
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-}
+        .table tbody tr:nth-child(odd) {
+            background-color: #f8f9fa;
+        }
 
-img {
-    width: 80px;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+        .table tbody tr:nth-child(even) {
+            background-color: #e9ecef;
+        }
 
-img:hover {
-    transform: scale(1.1);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
+        .table tbody tr:hover {
+            background-color: #dee2e6;
+            transform: scale(1.01);
+            transition: all 0.2s ease-in-out;
+        }
 
-.btn {
-    font-size: 0.85rem;
-    border-radius: 8px;
-    padding: 8px 16px;
-    transition: all 0.3s ease;
-}
+        .table th:first-child,
+        .table td:first-child {
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
 
-.btn-warning {
-    background-color: #f1c40f;
-    color: white;
-    border: none;
-}
+        .table th:last-child,
+        .table td:last-child {
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
 
-.btn-warning:hover {
-    background-color: #e67e22;
-    transform: scale(1.05);
-}
+        img {
+            width: 80px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-.btn-danger {
-    background-color: #e74c3c;
-    color: white;
-    border: none;
-}
+        img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
 
-.btn-danger:hover {
-    background-color: #c0392b;
-    transform: scale(1.05);
-}
+        .btn {
+            font-size: 0.85rem;
+            border-radius: 8px;
+            padding: 8px 16px;
+            transition: all 0.3s ease;
+        }
 
-.btn-primary {
-    background-color: #3498db;
-    color: white;
-    border: none;
-}
+        .btn-warning {
+            background-color: #f1c40f;
+            color: white;
+            border: none;
+        }
 
-.btn-primary:hover {
-    background-color: #2980b9;
-    transform: scale(1.05);
-}
+        .btn-warning:hover {
+            background-color: #e67e22;
+            transform: scale(1.05);
+        }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .table th, .table td {
-        font-size: 0.8rem;
-    }
+        .btn-danger {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+        }
 
-    img {
-        width: 60px;
-    }
-}
+        .btn-danger:hover {
+            background-color: #c0392b;
+            transform: scale(1.05);
+        }
 
-@media (max-width: 576px) {
-    .table {
-        font-size: 0.8rem;
-    }
+        .btn-primary {
+            background-color: #3498db;
+            color: white;
+            border: none;
+        }
 
-    .table thead {
-        display: none;
-    }
+        .btn-primary:hover {
+            background-color: #2980b9;
+            transform: scale(1.05);
+        }
 
-    .table tbody tr {
-        display: block;
-        margin-bottom: 16px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
-        overflow: hidden;
-    }
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
 
-    .table tbody tr td {
-        display: flex;
-        justify-content: space-between;
-        padding: 10px;
-    }
+            .table th,
+            .table td {
+                font-size: 0.8rem;
+            }
 
-    .table tbody tr td::before {
-        content: attr(data-label);
-        font-weight: bold;
-        color: #6c757d;
-        margin-right: 10px;
-    }
+            img {
+                width: 60px;
+            }
+        }
 
-    img {
-        width: 50px;
-    }
-}
-</style>
+        @media (max-width: 576px) {
+            .table {
+                font-size: 0.8rem;
+            }
+
+            .table thead {
+                display: none;
+            }
+
+            .table tbody tr {
+                display: block;
+                margin-bottom: 16px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                border-radius: 10px;
+                overflow: hidden;
+            }
+
+            .table tbody tr td {
+                display: flex;
+                justify-content: space-between;
+                padding: 10px;
+            }
+
+            .table tbody tr td::before {
+                content: attr(data-label);
+                font-weight: bold;
+                color: #6c757d;
+                margin-right: 10px;
+            }
+
+            img {
+                width: 50px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -285,14 +293,15 @@ img:hover {
                     <th>Nivel Combustible</th>
                     <th>Daños Visibles</th>
                     <th>Costo Total</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($data as $rent): ?>
                     <tr>
                         <td>
-                            <img src="../images/autos/<?php echo htmlspecialchars($rent['imagen'], ENT_QUOTES, 'UTF-8'); ?>" 
-                                 alt="Imagen de <?php echo $rent['modelo']; ?>">
+                            <img src="../images/autos/<?php echo htmlspecialchars($rent['imagen'], ENT_QUOTES, 'UTF-8'); ?>"
+                                alt="Imagen de <?php echo $rent['modelo']; ?>">
                         </td>
                         <td><?php echo $rent['matricula'] . ' / ' . $rent['marca'] . ' / ' . $rent['modelo']; ?></td>
                         <td><?php echo $rent['fecha_inicio']; ?></td>
@@ -300,8 +309,8 @@ img:hover {
                         <td><?php echo $rent['nombre_usuario']; ?></td>
                         <td>
                             <?php if (is_null($rent['devolucion_id'])): ?>
-                                <button data-id="<?php echo $rent['alquiler_id']; ?>" type="button" 
-                                        class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#devolucionModal">
+                                <button data-id="<?php echo $rent['alquiler_id']; ?>" type="button"
+                                    class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#devolucionModal">
                                     Registrar Devolución
                                 </button>
                             <?php else: ?>
@@ -314,6 +323,19 @@ img:hover {
                         <td><?php echo $rent['nivel_combustible'] ?? 'N/A'; ?></td>
                         <td><?php echo $rent['daños_visibles'] ?? 'N/A'; ?></td>
                         <td><?php echo is_null($rent['costo_total']) ? 'N/A' : '$' . number_format($rent['costo_total'], 2); ?></td>
+                        <td>
+                            <?php if (!is_null($rent['devolucion_id'])): ?>
+                                <a href="./generarFactura.php?id=<?php echo $rent['devolucion_id']; ?>"
+                                    class="btn btn-danger btn-sm eliminar"
+                                    target="_blank">
+                                    Generar PDF Factura
+                                </a>
+                            <?php else: ?>
+                                <span class="text-muted">No disponible</span>
+                            <?php endif; ?>
+                        </td>
+
+
                     </tr>
                 <?php endforeach; ?>
             </tbody>
@@ -329,12 +351,12 @@ img:hover {
     <!-- Botón para abrir el modal -->
 
 
-<!-- Modal -->
+    <!-- Modal -->
 
 
-<!-- Bootstrap CSS y JS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap CSS y JS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <?php include '../util/footer.html'; ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
@@ -344,7 +366,7 @@ img:hover {
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     <script src="./home_section/js/devAdd.js"></script>
-   
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const camposFecha = document.querySelectorAll(".fecha_fin");
@@ -371,7 +393,7 @@ img:hover {
     </script>
     <script>
 
-</script>
+    </script>
 
 </body>
 
